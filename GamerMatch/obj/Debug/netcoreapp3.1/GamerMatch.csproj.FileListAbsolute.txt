@@ -112,3 +112,38 @@ C:\Users\Genie\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\Micros
 C:\Users\Genie\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Genie\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 C:\Users\Genie\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\GamerMatch.exe
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\GamerMatch.deps.json
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\GamerMatch.runtimeconfig.json
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\GamerMatch.runtimeconfig.dev.json
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\GamerMatch.dll
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\GamerMatch.pdb
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\GamerMatch.Views.dll
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\GamerMatch.Views.pdb
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.csprojAssemblyReference.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\staticwebassets\GamerMatch.StaticWebAssets.Manifest.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\staticwebassets\GamerMatch.StaticWebAssets.xml
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.RazorAssemblyInfo.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.RazorAssemblyInfo.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.AssemblyInfoInputs.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.AssemblyInfo.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.TagHelpers.input.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.TagHelpers.output.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.RazorCoreGenerate.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.RazorTargetAssemblyInfo.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.RazorTargetAssemblyInfo.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.Views.pdb
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.dll
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.pdb
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.csproj.CopyComplete
