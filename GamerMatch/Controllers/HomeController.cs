@@ -26,21 +26,16 @@ namespace GamerMatch.Controllers
             userProfile user = await getProfile();
             return View(user);
         }
-
         public async Task<userProfile> getProfile()
         {
-            // This method shows proof of concept that with the Steam#ID we can call the profile.
-
             using (var httpClient = new HttpClient())
             {
-                using (var response = 
+                using (var response =
                     await httpClient.GetAsync("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=99ff3510b4cabfad5fa950d44aa31f1a&steamids=76561198208852060"))
                 {
                     var summary = await response.Content.ReadAsStringAsync();
                     jDoc = JsonDocument.Parse(summary);
                     var player = jDoc.RootElement.GetProperty("response").GetProperty("players");
-
-                    // This code parses the return into a newUser object
                     userProfile newUser = new userProfile()
                     {
                         steamid = player[0].GetProperty("steamid").ToString(),
@@ -48,7 +43,6 @@ namespace GamerMatch.Controllers
                         profileurl = player[0].GetProperty("profileurl").ToString(),
                         personastateflags = int.Parse(player[0].GetProperty("personastateflags").ToString())
                     };
-
                     return newUser;
                 }
             }
