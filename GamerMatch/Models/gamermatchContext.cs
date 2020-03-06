@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GamerMatch.Models
 {
-    public partial class gamermatchContext : DbContext
+    public partial class GamerMatchContext : DbContext
     {
-        public gamermatchContext()
+        public GamerMatchContext()
         {
         }
 
-        public gamermatchContext(DbContextOptions<gamermatchContext> options)
+        public GamerMatchContext(DbContextOptions<GamerMatchContext> options)
             : base(options)
         {
         }
@@ -20,7 +20,7 @@ namespace GamerMatch.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=gamermatch.database.windows.net;Database=gamermatch;User ID=GamerMatch;Password=Inari_2007;");
+                optionsBuilder.UseSqlServer("Server=tcp:gamermatch.database.windows.net,1433;Initial Catalog=GamerMatch;Persist Security Info=False;User ID=GamerMatch;Password=Inari_2007;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30");
             }
         }
 

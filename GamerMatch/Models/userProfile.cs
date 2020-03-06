@@ -14,7 +14,7 @@ namespace GamerMatch.Models
         public userPref preferences { get; set; }
         public gRating userRating { get; set; }
 
-
+    }
         public class userPref
         {
             public bool hasSteam { get; set; }
@@ -35,7 +35,7 @@ namespace GamerMatch.Models
             public int rateCount { get; set; }
             public double rating { get; set; }
         }
-    }
+    
 
     public class Game
     {

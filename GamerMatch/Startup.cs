@@ -32,6 +32,7 @@ namespace GamerMatch
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.Configure<IdentityOptions>(options => options.SignIn.RequireConfirmedEmail = true);
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

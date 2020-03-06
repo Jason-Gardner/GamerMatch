@@ -39,7 +39,7 @@ namespace GamerMatch.Controllers
                     userProfile newUser = new userProfile()
                     {
                         steamid = player[0].GetProperty("steamid").ToString(),
-                        profilestate = int.Parse(player[0].GetProperty("profilestate").ToString()),
+                        
                         profileurl = player[0].GetProperty("profileurl").ToString(),
                         personastateflags = int.Parse(player[0].GetProperty("personastateflags").ToString())
                     };
