@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Genie\\Documents\\GitHub\\GamerMatch\\GamerMatch\\GamerMatch.csproj": {}
+    "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj": {}
   },
   "projects": {
-    "D:\\Genie\\Documents\\GitHub\\GamerMatch\\GamerMatch\\GamerMatch.csproj": {
+    "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Genie\\Documents\\GitHub\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+        "projectUniqueName": "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
         "projectName": "GamerMatch",
-        "projectPath": "D:\\Genie\\Documents\\GitHub\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
-        "packagesPath": "C:\\Users\\Genie\\.nuget\\packages\\",
-        "outputPath": "D:\\Genie\\Documents\\GitHub\\GamerMatch\\GamerMatch\\obj\\",
+        "projectPath": "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+        "packagesPath": "C:\\Users\\Jason Gardner\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Genie\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Jason Gardner\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -45,27 +43,21 @@
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.1, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.1, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.1, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.1, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.1.2, )"
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.1, )"
             }
