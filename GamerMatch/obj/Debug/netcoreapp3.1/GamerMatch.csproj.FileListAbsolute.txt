@@ -394,3 +394,9 @@ C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreap
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.RazorTargetAssemblyInfo.cs
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.Views.pdb
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.csproj.CopyComplete
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
