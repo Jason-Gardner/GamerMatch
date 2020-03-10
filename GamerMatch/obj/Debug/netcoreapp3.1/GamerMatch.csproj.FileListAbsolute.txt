@@ -562,3 +562,5 @@ D:\Genie\Documents\GitHub\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMat
 D:\Genie\Documents\GitHub\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.pdb
 D:\Genie\Documents\GitHub\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\HomePage.cshtml.g.cs
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\HomePage.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\HomePage.cshtml.g.cs
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Preferences.cshtml.g.cs

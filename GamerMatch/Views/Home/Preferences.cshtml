@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Preferences";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AspNetUsers
+
+<div class="text-center">
+    <h1>Welcome to partyUp!</h1>
+    <p>Please confirm your information:</p>
+    <form action="Preferences">
+        <table>
+            <tr>
+                <td>@Model.UserName</td>
+            </tr>
+            <tr>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td><input type="text" name="steam" /><label for="steam">Steam ID (Optional)</label></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" id="easy" name="mode" value="easy">
+                    <label for="easy">EZ Mode</label>
+                </td>
+                <td>
+                    <input type="radio" id="medium" name="mode" value="medium">
+                    <label for="medium">This isn't my first rodeo...</label>
+                </td>
+                <td>
+                    <input type="radio" id="hard" name="mode" value="hard">
+                    <label for="hard">I'm a hardc0re gamer!</label>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>

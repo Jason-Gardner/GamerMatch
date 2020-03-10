@@ -19,6 +19,7 @@ namespace GamerMatch.Controllers
         private JsonDocument jDoc;
         private ApiController apiController;
         private DatabaseController databaseController;
+        public GamerMatchContext gc = new GamerMatchContext();
 
         public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
@@ -30,16 +31,36 @@ namespace GamerMatch.Controllers
 
         public async Task<IActionResult> Index()
         {
-            string gameSearch = "Garry's Mod";
+            //string gameSearch = "Garry's Mod";
 
-            List<AspNetUsers> matchList = await databaseController.SearchMatch(gameSearch);
+            //List<AspNetUsers> matchList = await databaseController.SearchMatch(gameSearch);
 
-            return View(matchList);
+            //return View(matchList);
+
+            return View();
         }
 
         public IActionResult HomePage()
         {
             return View();
+        }
+
+        public IActionResult Preferences()
+        {
+            AspNetUsers newUser = new AspNetUsers();
+            foreach (var person in gc.AspNetUsers)
+            {
+                if (person.UserName == User.Identity.Name)
+                {
+                    newUser = person;
+                }
+            }
+            return View(newUser);
+        }
+
+        public IActionResult UserPerf(string difficulty)
+        {
+            return View("HomePage");
         }
 
         public IActionResult Privacy()
