@@ -8509,20 +8509,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mbate\\.nuget\\packages\\": {}
+    "C:\\Users\\Genie\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+      "projectUniqueName": "D:\\Genie\\Documents\\GitHub\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
       "projectName": "GamerMatch",
-      "projectPath": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
-      "packagesPath": "C:\\Users\\mbate\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\obj\\",
+      "projectPath": "D:\\Genie\\Documents\\GitHub\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+      "packagesPath": "C:\\Users\\Genie\\.nuget\\packages\\",
+      "outputPath": "D:\\Genie\\Documents\\GitHub\\GamerMatch\\GamerMatch\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\mbate\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Genie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

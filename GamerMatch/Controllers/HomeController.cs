@@ -27,7 +27,7 @@ namespace GamerMatch.Controllers
             apiController = new ApiController(config);
             databaseController = new DatabaseController(config);
         }
-
+        
         public async Task<IActionResult> Index()
         {
             string steamID = "76561198208852060";
@@ -38,9 +38,14 @@ namespace GamerMatch.Controllers
             return View();
         }
 
-        
+        public IActionResult HomePage()
+        {
+            return View();
+        }
 
-       
+
+
+
 
         public IActionResult Privacy()
         {
