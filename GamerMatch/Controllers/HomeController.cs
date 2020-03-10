@@ -27,25 +27,20 @@ namespace GamerMatch.Controllers
             apiController = new ApiController(config);
             databaseController = new DatabaseController(config);
         }
-        
+
         public async Task<IActionResult> Index()
         {
-            string steamID = "76561198208852060";
-            string gameSearch = "Just Survive";
+            string gameSearch = "Garry's Mod";
 
-            ViewBag.ID = await apiController.SearchGames(steamID, gameSearch);
+            List<AspNetUsers> matchList = await databaseController.SearchMatch(gameSearch);
 
-            return View();
+            return View(matchList);
         }
 
         public IActionResult HomePage()
         {
             return View();
         }
-
-
-
-
 
         public IActionResult Privacy()
         {
@@ -59,3 +54,4 @@ namespace GamerMatch.Controllers
         }
     }
 }
+

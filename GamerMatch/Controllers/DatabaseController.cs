@@ -16,6 +16,7 @@ namespace GamerMatch.Controllers
         public DatabaseController(IConfiguration config)
         {
             _config = config;
+            apiController = new ApiController(config);
         }
         public async Task<List<AspNetUsers>> SearchMatch(string gameSearch)
         {
