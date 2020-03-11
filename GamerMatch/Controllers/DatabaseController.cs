@@ -25,9 +25,19 @@ namespace GamerMatch.Controllers
 
             foreach (AspNetUsers user in db.AspNetUsers)
             {
-                if (await apiController.SearchGames(user.SteamInfo, gameSearch) != null)
+                if (user.SteamInfo != null)
                 {
-                    matchList.Add(user);
+                    try
+                    {
+                        if (await apiController.SearchGames(user.SteamInfo, gameSearch) != null)
+                        {
+                            matchList.Add(user);
+                        }
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        continue;
+                    }
                 }
             }
 

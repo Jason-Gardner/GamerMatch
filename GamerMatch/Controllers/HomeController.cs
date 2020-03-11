@@ -31,13 +31,13 @@ namespace GamerMatch.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //string gameSearch = "Garry's Mod";
+            string gameSearch = "Garry's Mod";
 
-            //List<AspNetUsers> matchList = await databaseController.SearchMatch(gameSearch);
+            List<AspNetUsers> matchList = await databaseController.SearchMatch(gameSearch);
 
-            //return View(matchList);
+            return View(matchList);
 
-            return View();
+            //return View();
         }
 
         public IActionResult HomePage()
