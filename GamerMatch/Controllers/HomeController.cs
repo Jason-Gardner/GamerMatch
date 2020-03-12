@@ -9,6 +9,7 @@ using GamerMatch.Models;
 using System.Net.Http;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GamerMatch.Controllers
 {
@@ -20,6 +21,7 @@ namespace GamerMatch.Controllers
         private ApiController apiController;
         private DatabaseController databaseController;
         public GamerMatchContext gc = new GamerMatchContext();
+        private AspNetUsers currentUser = new AspNetUsers();
 
         public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
@@ -40,22 +42,17 @@ namespace GamerMatch.Controllers
             //return View();
         }
 
+        [Authorize]
         public IActionResult HomePage()
         {
-            return View();
+            FindUser();
+            return View(currentUser);
         }
 
         public IActionResult Preferences()
         {
-            AspNetUsers newUser = new AspNetUsers();
-            foreach (var person in gc.AspNetUsers)
-            {
-                if (person.UserName == User.Identity.Name)
-                {
-                    newUser = person;
-                }
-            }
-            return View(newUser);
+            FindUser();
+            return View(currentUser);
         }
 
         public IActionResult UserPerf(string difficulty)
@@ -66,6 +63,17 @@ namespace GamerMatch.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public void FindUser()
+        {
+            foreach (var person in gc.AspNetUsers)
+            {
+                if (person.Email == User.Identity.Name)
+                {
+                    currentUser = person;
+                }
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
