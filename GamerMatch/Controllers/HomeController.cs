@@ -85,11 +85,29 @@ namespace GamerMatch.Controllers
         {
             foreach (var person in gc.AspNetUsers)
             {
-                if (person.Email == User.Identity.Name)
+                if (person.UserName == User.Identity.Name)
                 {
                     currentUser = person;
                 }
             }
+        }
+
+        public async Task<IActionResult> Results(string game, string boardgame, string difficult)
+        {
+            List<AspNetUsers> userList = new List<AspNetUsers>();
+
+            if (difficult != null)
+            {
+                await foreach (var item in gc.AspNetUsers)
+                {
+                    if (item.UserPref == difficult)
+                    {
+                        userList.Add(item);
+                    }
+                }
+            }
+
+            return View(userList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

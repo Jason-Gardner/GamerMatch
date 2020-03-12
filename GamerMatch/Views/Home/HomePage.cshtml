@@ -50,7 +50,9 @@
                     <div class="form-group">
                         @*<label for="gameSearch">Game Name</label>
         <input class="form-control" type="Text" name="gameSearch" pattern="[A-Za-z0-9]+" />*@
-                        <select name="Games">
+                        <label for="game">Steam Game Title</label>
+                        <select name="game">
+                            <option value=""></option>
                             @foreach (var item in ViewData["MyGames"] as List<string>)
                             {
                                 <option value="@item">@item</option>
@@ -58,8 +60,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <select name="Boardgames">
-                          
+                        <label for="boardgame">Board Game Title</label>
+                        <select name="boardgame">
+                            <option value=""></option>
                             @foreach (var item in ViewData["Games"] as List<BoardGames>)
                             {
                                 <option value="@item.Id">@item.Title</option>
@@ -72,6 +75,7 @@
                             <legend>Type Of Play</legend>
 
                             <select name="difficult">
+                                <option value=""></option>
                                 <option value="casual">Casual Play</option>
                                 <option value="competitive">Competitive Play</option>
                                 <option value="win">Play to Win</option>
