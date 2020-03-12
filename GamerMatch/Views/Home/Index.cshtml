@@ -4,13 +4,19 @@
 
 @model List<AspNetUsers>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container bg-primary">
+    <div class="text-center">
+        <h1>Welcome</h1>
+        <p>This is a site to introduce gamers to the people 
+        that player similar games, have similar play styles, or just gamers </p>
+    </div>
 </div>
 
+ 
 
-@*@foreach (AspNetUsers user in Model)
+
+
+@foreach (AspNetUsers user in Model)
 {
-    <h3>@user.UserName</h3>
-}*@
+    <h3>@user</h3>
+}

@@ -22,6 +22,7 @@ namespace GamerMatch.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<BoardGames> BoardGames { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -132,6 +133,29 @@ namespace GamerMatch.Models
                 entity.Property(e => e.PlayerRating).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<BoardGames>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Genre)
+                    .IsRequired()
+                    .HasColumnName("genre")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Maxplayers).HasColumnName("maxplayers");
+
+                entity.Property(e => e.Ratings).HasColumnName("ratings");
+
+                entity.Property(e => e.Score)
+                    .HasColumnName("score")
+                    .HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasColumnName("title")
+                    .HasMaxLength(1000);
             });
 
             OnModelCreatingPartial(modelBuilder);

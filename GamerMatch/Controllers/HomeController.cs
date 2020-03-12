@@ -42,6 +42,10 @@ namespace GamerMatch.Controllers
 
         public IActionResult HomePage()
         {
+            gc = new GamerMatchContext();
+
+
+
             return View();
         }
 

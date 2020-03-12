@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model List<AspNetUsers>
+
 <h1>HomePage</h1>
 
 <style>
@@ -39,48 +41,61 @@
 <form id="myformOne" asp-controller="Home" asp-action="Results" onsubmit="return ValidationEvent()">
     <div id="leftbox">
         <div class="container bg-primary">
-            <h4>Search Options</h4>
+            <fieldset>
+                <legend>Search Options</legend>               
+                    <div class="form-group">
+                        <label for="userName">User Name</label>
+                        <input class="form-control" type="Text" name="userName" pattern="[A-Za-z0-9]+" />
+                    </div>
+                    <div class="form-group">
+                        <label for="gameSearch">Game Name</label>
+                        <input class="form-control" type="Text" name="gameSearch" pattern="[A-Za-z0-9]+" />
+                    </div>
+                    <div class="form-group">
+                        <select name="Boardgames">
+                            <label for="gameName">Boardgame Name</label>
+                            <input class="form-control" type="Text" name="gameName" />
 
-            <p>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <fieldset>
+                            <legend>Type Of Play</legend>
+
+                            <label for="casualPlay">Casual Play</label>
+                            <input type="checkbox" id="casualPlay" name="typeOfPlay" />
+
+                            <label for="competitivePlay">Competitive Play</label>
+                            <input type="checkbox" id="competitivePlay" name="typeOfPlay" />
+
+                            <label for="playTOWin">Play to Win</label>
+                            <input type="checkbox" id="playToWin" name="typeOfPlay" />
+
+                        </fieldset>
+                    </div>
+                
+
                 <div class="form-group">
-                    <label for="userName">User Name</label>
-                    <input class="form-control" type="Text" name="userName" pattern="[A-Za-z0-9]+" />
+                    <input class="form-control btn btn-primary" type="submit" />
                 </div>
-                <div class="form-group">
-                    <label for="gameName">Game Name</label>
-                    <input class="form-control" type="Text" name="gameName" pattern="[A-Za-z0-9]+" />
-                </div>
-                <div class="form-group">
-                    <fieldset>
-                        <legend>Type Of Play</legend>
-
-                        <label for="casualPlay">Casual Play</label>
-                        <input type="checkbox" id="casualPlay" name="typeOfPlay" />
-
-                        <label for="competitivePlay">Competitive Play</label>
-                        <input type="checkbox" id="competitivePlay" name="typeOfPlay" />
-
-                        <label for="playTOWin">Play to Win</label>
-                        <input type="checkbox" id="playToWin" name="typeOfPlay" />
-
-                    </fieldset>
-                </div>
-            </p>
-
-            <div class="form-group">
-                <input class="form-control btn btn-primary" type="submit" />
-            </div>
+            </fieldset>
         </div>
+        
     </div>
 </form>
 
 
 <div id="middlebox">
-    <div class="container bg-primary">
+    <div class="list-group bg-success">
+        
         <h4>Matches</h4>
-        <p>
-            "matches name"
-        </p>
+        
+            @foreach (AspNetUsers user in Model)
+             {
+                <h3>@user.UserName</h3>
+             }
+
+        
     </div>
 
 </div>
