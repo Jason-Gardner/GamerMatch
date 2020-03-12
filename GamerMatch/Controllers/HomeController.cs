@@ -9,6 +9,7 @@ using GamerMatch.Models;
 using System.Net.Http;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GamerMatch.Controllers
 {
@@ -20,6 +21,7 @@ namespace GamerMatch.Controllers
         private ApiController apiController;
         private DatabaseController databaseController;
         public GamerMatchContext gc = new GamerMatchContext();
+        private AspNetUsers currentUser = new AspNetUsers();
 
         public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
@@ -31,35 +33,34 @@ namespace GamerMatch.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //string gameSearch = "Garry's Mod";
+            string gameSearch = "Garry's Mod";
 
-            //List<AspNetUsers> matchList = await databaseController.SearchMatch(gameSearch);
+            List<AspNetUsers> matchList = await databaseController.SearchMatchSteam(gameSearch);
 
-            //return View(matchList);
+            return View(matchList);
 
-            return View();
+            //return View();
         }
 
+        [Authorize]
         public IActionResult HomePage()
         {
+<<<<<<< HEAD
             gc = new GamerMatchContext();
 
 
 
             return View();
+=======
+            FindUser();
+            return View(currentUser);
+>>>>>>> 9268784e51ed714494098398855b2bd6a69564b3
         }
 
         public IActionResult Preferences()
         {
-            AspNetUsers newUser = new AspNetUsers();
-            foreach (var person in gc.AspNetUsers)
-            {
-                if (person.UserName == User.Identity.Name)
-                {
-                    newUser = person;
-                }
-            }
-            return View(newUser);
+            FindUser();
+            return View(currentUser);
         }
 
         public IActionResult UserPerf(string difficulty)
@@ -70,6 +71,17 @@ namespace GamerMatch.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public void FindUser()
+        {
+            foreach (var person in gc.AspNetUsers)
+            {
+                if (person.Email == User.Identity.Name)
+                {
+                    currentUser = person;
+                }
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
