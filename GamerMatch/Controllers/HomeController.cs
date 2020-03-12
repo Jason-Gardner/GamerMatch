@@ -19,6 +19,7 @@ namespace GamerMatch.Controllers
         private IConfiguration _config;
         private ApiController apiController;
         private DatabaseController databaseController;
+        private MatchController matchController;
         public GamerMatchContext gc = new GamerMatchContext();
         private AspNetUsers currentUser = new AspNetUsers();
 
@@ -28,6 +29,7 @@ namespace GamerMatch.Controllers
             _config = config;
             apiController = new ApiController(config);
             databaseController = new DatabaseController(config);
+            matchController = new MatchController(config);
         }
 
         public async Task<IActionResult> Index()
@@ -62,9 +64,21 @@ namespace GamerMatch.Controllers
             return View("HomePage");
         }
 
+        //Temp Test Zone
         public IActionResult Privacy()
         {
-            return View();
+            List<string> gameList = new List<string>()
+            {"Game 1", "Game 2", "Game 3", "Game 4"
+            };
+
+            //AspNetUsers user = matchController.SetTestUser();
+            //gameList = databaseController.GetBoardGames(user.BoardGamePref);
+
+            string gameString = databaseController.SetBoardGames(gameList);
+
+
+
+            return View("Privacy", gameString);
         }
 
         public void FindUser()

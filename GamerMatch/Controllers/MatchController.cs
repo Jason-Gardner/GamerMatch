@@ -4,12 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using GamerMatch.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace GamerMatch.Controllers
 {
     public class MatchController : Controller
     {
+        private IConfiguration _config;
         GamerMatchContext db = new GamerMatchContext();
+        public MatchController(IConfiguration config)
+        {
+            _config = config;
+        }
 
         //Just for testing purposes
         public AspNetUsers SetTestUser()

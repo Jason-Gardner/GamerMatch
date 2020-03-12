@@ -60,5 +60,31 @@ namespace GamerMatch.Controllers
 
             return matchList;
         }
+
+        public string SetBoardGames (List<string> boardGameList)
+        {
+            string boardGameString = null;
+
+            for(int i = 0; i < boardGameList.Count; i++)
+            {
+                if(i == 0)
+                {
+                    boardGameString += boardGameList[i];
+                }
+                else
+                {
+                    boardGameString += (',' + boardGameList[i]);
+                }
+            }
+
+            return boardGameString;
+        }
+
+        public List<string> GetBoardGames (string boardGameString)
+        {
+            List<string> boardGameList = boardGameString.Split(',').ToList<string>();
+
+            return boardGameList;
+        }
     }
 }
