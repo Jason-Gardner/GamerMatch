@@ -18,7 +18,7 @@ namespace GamerMatch.Controllers
             _config = config;
             apiController = new ApiController(config);
         }
-        public async Task<List<AspNetUsers>> SearchMatch(string gameSearch)
+        public async Task<List<AspNetUsers>> SearchMatchSteam(string gameSearch)
         {
             GamerMatchContext db = new GamerMatchContext();
             List<AspNetUsers> matchList = new List<AspNetUsers>();
@@ -38,6 +38,23 @@ namespace GamerMatch.Controllers
                     {
                         continue;
                     }
+                }
+            }
+
+            return matchList;
+        }
+
+        public List<AspNetUsers> SearchMatchBoardGames(int Id)
+        {
+            GamerMatchContext db = new GamerMatchContext();
+            List<AspNetUsers> matchList = new List<AspNetUsers>();
+
+            foreach(AspNetUsers user in db.AspNetUsers)
+            {
+                //If statement will be modified to search through wherever the user's game list is stored
+                if (user.UserPref == Id.ToString())
+                {
+                    matchList.Add(user);
                 }
             }
 

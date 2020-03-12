@@ -33,7 +33,7 @@ namespace GamerMatch.Controllers
         {
             string gameSearch = "Garry's Mod";
 
-            List<AspNetUsers> matchList = await databaseController.SearchMatch(gameSearch);
+            List<AspNetUsers> matchList = await databaseController.SearchMatchSteam(gameSearch);
 
             return View(matchList);
 
