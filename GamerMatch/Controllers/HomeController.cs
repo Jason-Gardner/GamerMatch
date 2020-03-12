@@ -17,7 +17,6 @@ namespace GamerMatch.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IConfiguration _config;
-        private JsonDocument jDoc;
         private ApiController apiController;
         private DatabaseController databaseController;
         public GamerMatchContext gc = new GamerMatchContext();
@@ -43,18 +42,13 @@ namespace GamerMatch.Controllers
         }
 
         [Authorize]
-        public IActionResult HomePage()
+        public async Task<IActionResult> HomePage()
         {
-<<<<<<< HEAD
-            gc = new GamerMatchContext();
-
-
-
-            return View();
-=======
             FindUser();
+            ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
+            ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
+            ViewData["MyGames"] = await apiController.MyGames(currentUser.SteamInfo);
             return View(currentUser);
->>>>>>> 9268784e51ed714494098398855b2bd6a69564b3
         }
 
         public IActionResult Preferences()

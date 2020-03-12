@@ -46,5 +46,31 @@ namespace GamerMatch.Controllers
                 }
             }
         }
+
+        public async Task<List<string>> MyGames(string steamID)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var apiKey = _config["ApiKey"];
+                List<string> myGames = new List<string>();
+
+                using (var response =
+                    await httpClient.GetAsync($"http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key={apiKey}&steamid={steamID}&format=json"))
+                {
+                    var summary = await response.Content.ReadAsStringAsync();
+                    jDoc = JsonDocument.Parse(summary);
+                    var games = jDoc.RootElement.GetProperty("response").GetProperty("games");
+
+                    for (int i = 0; i < games.GetArrayLength(); i++)
+                    {
+                        var game = games[i].GetProperty("name").GetString();
+                        myGames.Add(game);
+                    }
+
+                    myGames.Sort();
+                    return myGames;
+                }
+            }
+        }
     }
 }

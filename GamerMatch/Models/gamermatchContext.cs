@@ -23,6 +23,7 @@ namespace GamerMatch.Models
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<BoardGames> BoardGames { get; set; }
+        public virtual DbSet<UserMatch> UserMatch { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -156,6 +157,22 @@ namespace GamerMatch.Models
                     .IsRequired()
                     .HasColumnName("title")
                     .HasMaxLength(1000);
+            });
+
+            modelBuilder.Entity<UserMatch>(entity =>
+            {
+                entity.HasKey(e => e.UserSend)
+                    .HasName("PK_UserMatch_1");
+
+                entity.Property(e => e.UserGet)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.HasOne(d => d.UserSendNavigation)
+                    .WithOne(p => p.UserMatch)
+                    .HasForeignKey<UserMatch>(d => d.UserSend)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserMatch_UserSend");
             });
 
             OnModelCreatingPartial(modelBuilder);

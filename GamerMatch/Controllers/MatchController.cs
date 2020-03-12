@@ -9,10 +9,11 @@ namespace GamerMatch.Controllers
 {
     public class MatchController : Controller
     {
+        GamerMatchContext db = new GamerMatchContext();
+
         //Just for testing purposes
         public AspNetUsers SetTestUser()
         {
-            GamerMatchContext db = new GamerMatchContext();
             AspNetUsers testUser = new AspNetUsers();
 
             foreach (AspNetUsers user in db.AspNetUsers)
@@ -53,6 +54,34 @@ namespace GamerMatch.Controllers
             }
 
             return matchScore;
+        }
+
+        public void MatchUsers(AspNetUsers matchUser)
+        {
+            AspNetUsers activeUser = FindUser();
+            UserMatch newMatch = new UserMatch()
+            {
+                UserSend = activeUser.Id,
+                UserGet = matchUser.Email
+            };
+
+            db.UserMatch.Add(newMatch);
+            
+        }
+
+        public AspNetUsers FindUser()
+        {
+            AspNetUsers activeUser = new AspNetUsers();
+
+            foreach (var person in db.AspNetUsers)
+            {
+                if (person.Email == User.Identity.Name)
+                {
+                    activeUser = person;
+                }
+            }
+
+            return activeUser;
         }
     }
 }

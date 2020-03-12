@@ -32,7 +32,10 @@ namespace GamerMatch.Models
         public string UserPref { get; set; }
         public int? RatingCount { get; set; }
         public decimal? PlayerRating { get; set; }
+        public string BoardGamePref { get; set; }
+        public string VideoGamePref { get; set; }
 
+        public virtual UserMatch UserMatch { get; set; }
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
