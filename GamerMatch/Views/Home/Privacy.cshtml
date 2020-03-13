@@ -4,11 +4,15 @@
 
 @*@model List<string>
 
-@foreach(string game in Model)
+    @foreach(string game in Model)
+    {
+        <h4>@game</h4>
+    }*@
+
+@model List<AspNetUsers>
+
+@foreach (AspNetUsers user in Model)
 {
-    <h4>@game</h4>
-}*@
+    <h4>@user.UserName</h4>
+}
 
-@model string
-
-<h4>@Model</h4>

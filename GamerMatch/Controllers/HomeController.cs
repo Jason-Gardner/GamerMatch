@@ -67,18 +67,11 @@ namespace GamerMatch.Controllers
         //Temp Test Zone
         public IActionResult Privacy()
         {
-            List<string> gameList = new List<string>()
-            {"Game 1", "Game 2", "Game 3", "Game 4"
-            };
+            string gameSearch = "Game 1";
 
-            //AspNetUsers user = matchController.SetTestUser();
-            //gameList = databaseController.GetBoardGames(user.BoardGamePref);
+            List<AspNetUsers> matchList = databaseController.SearchMatchBoardGames(gameSearch);
 
-            string gameString = databaseController.SetBoardGames(gameList);
-
-
-
-            return View("Privacy", gameString);
+            return View(matchList);
         }
 
         public void FindUser()

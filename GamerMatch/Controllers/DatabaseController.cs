@@ -44,22 +44,33 @@ namespace GamerMatch.Controllers
             return matchList;
         }
 
-        public List<AspNetUsers> SearchMatchBoardGames(int Id)
+        public List<AspNetUsers> SearchMatchBoardGames(string gameTitle)
         {
             GamerMatchContext db = new GamerMatchContext();
             List<AspNetUsers> matchList = new List<AspNetUsers>();
+            List<string> gameList = new List<string>();
+            string userGames = null;
 
-            foreach(AspNetUsers user in db.AspNetUsers)
+            foreach (AspNetUsers user in db.AspNetUsers)
             {
-                //If statement will be modified to search through wherever the user's game list is stored
-                if (user.UserPref == Id.ToString())
+                if (user.BoardGamePref != null)
                 {
-                    matchList.Add(user);
+                    userGames = user.BoardGamePref;
+                    gameList = GetBoardGames(userGames);
+
+                    foreach (string game in gameList)
+                    {
+                        if (game == gameTitle)
+                        {
+                            matchList.Add(user);
+                        }
+                    }
                 }
             }
 
             return matchList;
         }
+
 
         public string SetBoardGames (List<string> boardGameList)
         {
