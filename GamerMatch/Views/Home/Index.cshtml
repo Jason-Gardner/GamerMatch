@@ -2,8 +2,6 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model List<AspNetUsers>
-
 <div class="container bg-primary">
     <div class="text-center">
         <h1>Welcome</h1>
@@ -11,12 +9,3 @@
         that player similar games, have similar play styles, or just gamers </p>
     </div>
 </div>
-
- 
-
-
-
-@foreach (AspNetUsers user in Model)
-{
-    <h3>@user</h3>
-}

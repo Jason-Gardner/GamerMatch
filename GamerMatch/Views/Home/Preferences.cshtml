@@ -13,11 +13,19 @@
         <fieldset>
             <div class="form-group">
                 <label for="steam">Steam ID (Optional)</label>
-                <input type="text"/>
+                @if (Model.SteamInfo != null)
+                {
+                    <input type="text" placeholder="@Model.SteamInfo" />
+                }else
+                {
+                    <input type="text" />
+                }
+                
             </div>
             <div class="form-group">
                 <label for="difficulty">Select Difficulty</label>
                 <select name="difficulty">
+                    <option value="@Model.UserPref">Current Difficulty is: @Model.UserPref</option>
                     <option value="casual">Casual</option>
                     <option value="competitive">Competitive</option>
                     <option value="win">Play to Win</option>
@@ -25,12 +33,19 @@
             </div>
             <div class="form-group">
                 <label for="boardgames">Select Your Favorite Board/Card Games</label>
-               
-                    @foreach (var item in ViewData["Games"] as List<BoardGames>)
+
+                @foreach (var item in ViewData["Games"] as List<BoardGames>)
+                {
+                    @if (Model.BoardGamePref != null && Model.BoardGamePref.Contains(@item.Title))
+                    {
+                        <input type="checkbox" value="@item.Title" name="boardgames" checked="checked" /><label for="@item.Title">@item.Title</label>
+                    }
+                    else
                     {
                         <input type="checkbox" value="@item.Title" name="boardgames" /><label for="@item.Title">@item.Title</label>
                     }
-                
+                }
+
             </div>
             <input type="submit" />
         </fieldset>
