@@ -59,26 +59,33 @@ namespace GamerMatch.Controllers
             return View(currentUser);
         }
 
-        public IActionResult UserPerf(string difficulty)
+        public async Task<IActionResult> UserPerf(string steam, string difficulty)
         {
-            return View("HomePage");
+            FindUser();
+            currentUser.UserPref = difficulty;
+            ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
+            ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
+
+            if (steam == null)
+            {
+                return View("HomePage");
+            }
+            else
+            {
+                currentUser.SteamInfo = steam;
+                ViewData["MyGames"] = await apiController.MyGames(currentUser.SteamInfo);
+                return View("HomePage");
+            }
         }
 
         //Temp Test Zone
         public IActionResult Privacy()
         {
-            List<string> gameList = new List<string>()
-            {"Game 1", "Game 2", "Game 3", "Game 4"
-            };
+            string gameSearch = "Game 1";
 
-            //AspNetUsers user = matchController.SetTestUser();
-            //gameList = databaseController.GetBoardGames(user.BoardGamePref);
+            List<AspNetUsers> matchList = databaseController.SearchMatchBoardGames(gameSearch);
 
-            string gameString = databaseController.SetBoardGames(gameList);
-
-
-
-            return View("Privacy", gameString);
+            return View(matchList);
         }
 
         public void FindUser()

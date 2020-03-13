@@ -9,32 +9,50 @@
 <div class="text-center">
     <h1>Welcome to partyUp!</h1>
     <p>Please confirm your information:</p>
-    <form action="Preferences">
-        <table>
-            <tr>
-                <td>@Model.UserName</td>
-            </tr>
-            <tr>
-                <td>@Model.Email</td>
-            </tr>
-            <tr>
-                <td><input type="text" name="steam" /><label for="steam">Steam ID (Optional)</label></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" id="easy" name="mode" value="easy">
-                    <label for="easy">EZ Mode</label>
-                </td>
-                <td>
-                    <input type="radio" id="medium" name="mode" value="medium">
-                    <label for="medium">This isn't my first rodeo...</label>
-                </td>
-                <td>
-                    <input type="radio" id="hard" name="mode" value="hard">
-                    <label for="hard">I'm a hardc0re gamer!</label>
-                </td>
-            </tr>
-        </table>
+    <form id="myformOne" asp-controller="Home" asp-action="Results" onsubmit="return ValidationEvent()">
+        <div id="leftbox">
+            <div class="container bg-primary">
+                <fieldset>
+                    <legend>Search Options</legend>
+                    <div class="form-group">
+                        <label for="userName">User Name</label>
+                        <input class="form-control" type="Text" name="userName" pattern="[A-Za-z0-9]+" />
+                    </div>
+                    @if (ViewData["MyGames"] != null)
+                    {
+                        <div class="form-group">
+                            <label for="game">Steam Game Title</label>
+                            <select name="game">
+                                <option value=""></option>
+                                @foreach (var item in ViewData["MyGames"] as List<string>)
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label for="boardgame">Board Game Title</label>
+                        <select name="boardgame">
+                            <option value=""></option>
+                            @foreach (var item in ViewData["Games"] as List<BoardGames>)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="difficulty">Select Difficulty</label>
+                        <select name="difficulty">
+                            <option value="casual">Casual</option>
+                            <option value="competitive">Competitive</option>
+                            <option value="win">Play to Win</option>
+                        </select>
+                    </div>
+                    </fieldset>
+                </div>
+            </div>
     </form>
 
 </div>
