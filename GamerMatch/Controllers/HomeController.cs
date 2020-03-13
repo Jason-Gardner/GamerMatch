@@ -84,7 +84,6 @@ namespace GamerMatch.Controllers
             string gameSearch = "Game 1";
 
             List<AspNetUsers> matchList = databaseController.SearchMatchBoardGames(gameSearch);
-
             return View(matchList);
         }
 
