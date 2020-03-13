@@ -11,10 +11,13 @@ namespace GamerMatch.Controllers
     public class MatchController : Controller
     {
         private IConfiguration _config;
+        private DatabaseController databaseController;
         GamerMatchContext db = new GamerMatchContext();
+
         public MatchController(IConfiguration config)
         {
             _config = config;
+            databaseController = new DatabaseController(config);
         }
 
         //Just for testing purposes
@@ -47,6 +50,25 @@ namespace GamerMatch.Controllers
             }
 
             return match;
+        }
+
+        public int CompareBoardGameLists(AspNetUsers activeUser, AspNetUsers matchUser)
+        {
+            int matchNumber = 0;
+            List<string> gameListActive = databaseController.GetBoardGames(activeUser.BoardGamePref);
+            List<string> gameListMatched = databaseController.GetBoardGames(matchUser.BoardGamePref);
+
+            for(int i = 0; i < gameListActive.Count; i++)
+            {
+                for(int j = 0; j < gameListMatched.Count; j++)
+                {
+                    if(gameListActive[i] == gameListMatched[j])
+                    {
+                        matchNumber += 1;
+                    }
+                }
+            }
+            return matchNumber;
         }
 
         public int CompareBoardGameMatchTotal(bool userPrefMatch)
