@@ -34,6 +34,8 @@ namespace GamerMatch.Controllers
 
         public async Task<IActionResult> Index()
         {
+            int test = await matchController.GetSteamRecentlyPlayed(matchController.SetTestUser());
+
             string gameSearch = "Garry's Mod";
 
             List<AspNetUsers> matchList = await databaseController.SearchMatchSteam(gameSearch);

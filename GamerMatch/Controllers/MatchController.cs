@@ -12,12 +12,14 @@ namespace GamerMatch.Controllers
     {
         private IConfiguration _config;
         private DatabaseController databaseController;
+        private ApiController apiController;
         GamerMatchContext db = new GamerMatchContext();
 
         public MatchController(IConfiguration config)
         {
             _config = config;
             databaseController = new DatabaseController(config);
+            apiController = new ApiController(config);
         }
 
         //Just for testing purposes
@@ -82,6 +84,34 @@ namespace GamerMatch.Controllers
             }
 
             return matchScore;
+        }
+
+        public async Task<int> GetSteamRecentlyPlayed(AspNetUsers user)
+        {
+            List<string> listRecent = await apiController.MyGames(user.SteamInfo);
+
+            int totalRecent = listRecent.Count();
+
+            return totalRecent;
+        }
+
+        public async Task<int> CompareSteamRecentlyPlayed(AspNetUsers activeUser, AspNetUsers matchUser)
+        {
+            int matchNumber = 0;
+            List<string> gameListActive = await apiController.MyGames(activeUser.SteamInfo);
+            List<string> gameListMatched = await apiController.MyGames(matchUser.SteamInfo);
+
+            for (int i = 0; i < gameListActive.Count; i++)
+            {
+                for (int j = 0; j < gameListMatched.Count; j++)
+                {
+                    if (gameListActive[i] == gameListMatched[j])
+                    {
+                        matchNumber += 1;
+                    }
+                }
+            }
+            return matchNumber;
         }
 
         public void MatchUsers(AspNetUsers matchUser)
