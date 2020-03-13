@@ -73,11 +73,13 @@ namespace GamerMatch.Controllers
 
             if (steam == null)
             {
+                gc.SaveChanges();
                 return View("HomePage");
             }
             else
             {
                 currentUser.SteamInfo = steam;
+                gc.SaveChanges();
                 ViewData["MyGames"] = await apiController.MyGames(currentUser.SteamInfo);
                 return View("HomePage");
             }
