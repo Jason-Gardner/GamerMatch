@@ -56,12 +56,17 @@ namespace GamerMatch.Controllers
         public IActionResult Preferences()
         {
             FindUser();
+            ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
             return View(currentUser);
         }
 
-        public async Task<IActionResult> UserPerf(string steam, string difficulty)
+        public async Task<IActionResult> UserPerf(string steam, string difficulty, string[] boardgames)
         {
             FindUser();
+
+            List<string> myGames = boardgames.ToList<string>();
+            currentUser.BoardGamePref = databaseController.SetBoardGames(myGames);
+
             currentUser.UserPref = difficulty;
             ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
             ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();

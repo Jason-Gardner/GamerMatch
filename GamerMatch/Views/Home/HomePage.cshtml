@@ -42,14 +42,14 @@
     <div id="leftbox">
         <div class="container bg-primary">
             <fieldset>
-                <legend>Search Options</legend>               
+                <legend>Search Options</legend>
+                <div class="form-group">
+                    <label for="userName">User Name</label>
+                    <input class="form-control" type="Text" name="userName" pattern="[A-Za-z0-9]+" />
+                </div>
+                @if (ViewData["MyGames"] != null)
+                {
                     <div class="form-group">
-                        <label for="userName">User Name</label>
-                        <input class="form-control" type="Text" name="userName" pattern="[A-Za-z0-9]+" />
-                    </div>
-                    <div class="form-group">
-                        @*<label for="gameSearch">Game Name</label>
-        <input class="form-control" type="Text" name="gameSearch" pattern="[A-Za-z0-9]+" />*@
                         <label for="game">Steam Game Title</label>
                         <select name="game">
                             <option value=""></option>
@@ -59,52 +59,53 @@
                             }
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="boardgame">Board Game Title</label>
-                        <select name="boardgame">
+                }
+                <div class="form-group">
+                    <label for="boardgame">Board Game Title</label>
+                    <select name="boardgame">
+                        <option value=""></option>
+                        @foreach (var item in ViewData["Games"] as List<BoardGames>)
+                        {
+                            <option value="@item.Id">@item.Title</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Type Of Play</legend>
+
+                        <select name="difficult">
                             <option value=""></option>
-                            @foreach (var item in ViewData["Games"] as List<BoardGames>)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-
+                            <option value="casual">Casual Play</option>
+                            <option value="competitive">Competitive Play</option>
+                            <option value="win">Play to Win</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <fieldset>
-                            <legend>Type Of Play</legend>
 
-                            <select name="difficult">
-                                <option value=""></option>
-                                <option value="casual">Casual Play</option>
-                                <option value="competitive">Competitive Play</option>
-                                <option value="win">Play to Win</option>
-                            </select>
+                    </fieldset>
+                </div>
 
-                        </fieldset>
-                    </div>
-                
                 <div class="form-group">
                     <input class="form-control btn btn-primary" type="submit" />
                 </div>
             </fieldset>
         </div>
-        
+
     </div>
 </form>
 
 
 <div id="middlebox">
     <div class="list-group bg-success">
-        
-        <h4>Matches</h4>
-        
-            @foreach (var user in ViewData["Users"] as List<AspNetUsers>)
-             {
-                <h3>@user.UserName</h3>
-             }
 
-        
+        <h4>Matches</h4>
+
+        @foreach (var user in ViewData["Users"] as List<AspNetUsers>)
+        {
+            <h3>@user.UserName</h3>
+        }
+
+
     </div>
 
 </div>
