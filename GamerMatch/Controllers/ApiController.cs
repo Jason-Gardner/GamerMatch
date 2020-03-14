@@ -74,5 +74,32 @@ namespace GamerMatch.Controllers
                 }
             }
         }
+
+        public async Task<List<string>> GetSteamLibrary(string steamID)
+        {
+            List<string> library = new List<string>();
+
+            using (var httpClient = new HttpClient())
+            {
+                var apiKey = _config["ApiKey"];
+
+                using (var response =
+                    await httpClient.GetAsync($"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={apiKey}&steamid={steamID}&include_appinfo=1"))
+                {
+                    var summary = await response.Content.ReadAsStringAsync();
+                    jDoc = JsonDocument.Parse(summary);
+                    var games = jDoc.RootElement.GetProperty("response").GetProperty("games");
+
+                    for (int i = 0; i < games.GetArrayLength(); i++)
+                    {
+                        var game = games[i].GetProperty("name").GetString();
+
+                        library.Add(game);
+                    }
+
+                    return library;
+                }
+            }
+        }
     }
 }

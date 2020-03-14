@@ -7,19 +7,23 @@
 
 @model List<AspNetUsers>
 
-<h1>Results for @Context.Session.GetString("Searched Game")</h1>
+@*<h1>Results for @Context.Session.GetString("Searched Game")</h1>*@
+<h1>Results for @ViewBag.Title</h1>
 <table>
     @foreach (AspNetUsers user in Model)
     {
-    <tr>
-        <td>
-            <h4>Username: @user.UserName</h4>
-            <h4>Preferred Play Style: @user.UserPref</h4>
-            <h4>Match Rating: (To Be Added)</h4>
-            <h4>User Rating: (To Be Added)</h4>
-            <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match")'" />
-            <button>Deny Match</button>
-        </td>
-    </tr>
+        if (user.UserName != User.Identity.Name)
+        {
+            <tr>
+                <td>
+                    <h4>Username: @user.UserName</h4>
+                    <h4>Preferred Play Style: @user.UserPref</h4>
+                    <h4>Match Rating: (To Be Added)</h4>
+                    <h4>User Rating: (To Be Added)</h4>
+                    <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match")'" />
+                    <button>Deny Match</button>
+                </td>
+            </tr>
+        }
     }
 </table>

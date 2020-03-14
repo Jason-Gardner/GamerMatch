@@ -13,6 +13,7 @@ namespace GamerMatch.Controllers
     {
         private IConfiguration _config;
         private ApiController apiController;
+        private HomeController homeController;
 
         public DatabaseController(IConfiguration config)
         {
@@ -20,12 +21,29 @@ namespace GamerMatch.Controllers
             apiController = new ApiController(config);
         }
 
+        public async Task<List<AspNetUsers>> SearchSplit(string steamTitle, string boardTitle)
+        {
+            List<AspNetUsers> matchList = new List<AspNetUsers>();
+           
+            if(steamTitle == "null" && boardTitle != "null")
+            {
+                matchList = SearchMatchBoardGames(boardTitle);
+            }
+            else if(steamTitle != "null" && boardTitle == "null")
+            {
+                matchList = await SearchMatchSteam(steamTitle);
+            }
+
+            return matchList;
+        }
+
         // Calls the API controller to compare the search parameter to another user's Steam library
         public async Task<List<AspNetUsers>> SearchMatchSteam(string gameSearch)
         {
             GamerMatchContext db = new GamerMatchContext();
             List<AspNetUsers> matchList = new List<AspNetUsers>();
-            HttpContext.Session.SetString("Searched Game", gameSearch);
+            //HttpContext.Session.SetString("Searched Game", gameSearch);
+            ViewBag.Title = gameSearch;
 
             foreach (AspNetUsers user in db.AspNetUsers)
             {
@@ -52,7 +70,8 @@ namespace GamerMatch.Controllers
         {
             GamerMatchContext db = new GamerMatchContext();
             List<AspNetUsers> matchList = new List<AspNetUsers>();
-            HttpContext.Session.SetString("Searched Game", gameTitle);
+            //HttpContext.Session.SetString("Searched Game", gameTitle);
+            ViewBag.Title = gameTitle;
             List<string> gameList = new List<string>();
             string userGames = null;
 

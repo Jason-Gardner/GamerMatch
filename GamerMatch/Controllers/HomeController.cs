@@ -44,7 +44,14 @@ namespace GamerMatch.Controllers
             FindUser();
             ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
             ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
-            ViewData["MyGames"] = await apiController.MyGames(currentUser.SteamInfo);
+            if(currentUser.SteamInfo != null)
+            {
+                ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+            }
+            else
+            {
+                ViewData["MyGames"] = null;
+            }
             return View(currentUser);
         }
 
@@ -75,7 +82,7 @@ namespace GamerMatch.Controllers
             {
                 currentUser.SteamInfo = steam;
                 gc.SaveChanges();
-                ViewData["MyGames"] = await apiController.MyGames(currentUser.SteamInfo);
+                ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
                 return View("HomePage");
             }
         }
@@ -100,22 +107,11 @@ namespace GamerMatch.Controllers
             }
         }
 
-        public IActionResult Results(List<AspNetUsers> matchList)
+        public async Task<IActionResult> Results(string steamTitle, string boardTitle)
         {
-            //List<AspNetUsers> userList = new List<AspNetUsers>();
+            FindUser();
 
-            //if (difficult != null)
-            //{
-            //    await foreach (var item in gc.AspNetUsers)
-            //    {
-            //        if (item.UserPref == difficult)
-            //        {
-            //            userList.Add(item);
-            //        }
-            //    }
-            //}
-
-            //return View(userList);
+            List<AspNetUsers> matchList = await databaseController.SearchSplit(steamTitle, boardTitle);
 
 
             return View(matchList);
