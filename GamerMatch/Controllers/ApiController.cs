@@ -19,6 +19,7 @@ namespace GamerMatch.Controllers
             _config = config;
         }
 
+        // Calls API to return a Steam ID if the user owns a game from the search parameter
         public async Task<string> SearchGames(string steamID, string gameSearch)
         {
             using (var httpClient = new HttpClient())
@@ -47,6 +48,7 @@ namespace GamerMatch.Controllers
             }
         }
 
+        // Calls API to return a list of recently played games to populate the search view
         public async Task<List<string>> MyGames(string steamID)
         {
             using (var httpClient = new HttpClient())

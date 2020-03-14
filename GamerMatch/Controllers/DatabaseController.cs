@@ -18,6 +18,8 @@ namespace GamerMatch.Controllers
             _config = config;
             apiController = new ApiController(config);
         }
+
+        // Calls the API controller to compare the search parameter to another user's Steam library
         public async Task<List<AspNetUsers>> SearchMatchSteam(string gameSearch)
         {
             GamerMatchContext db = new GamerMatchContext();
@@ -40,10 +42,10 @@ namespace GamerMatch.Controllers
                     }
                 }
             }
-
             return matchList;
         }
 
+        // Returns a list of users who match the board game search parameter
         public List<AspNetUsers> SearchMatchBoardGames(string gameTitle)
         {
             GamerMatchContext db = new GamerMatchContext();
@@ -71,7 +73,7 @@ namespace GamerMatch.Controllers
             return matchList;
         }
 
-
+        // Manipulates the data passed in the view to a string to be saved in the database
         public string SetBoardGames (List<string> boardGameList)
         {
             string boardGameString = null;
@@ -91,6 +93,7 @@ namespace GamerMatch.Controllers
             return boardGameString;
         }
 
+        // Manipulates the string stored into the database into a list for user comparison
         public List<string> GetBoardGames (string boardGameString)
         {
             List<string> boardGameList = boardGameString.Split(',').ToList<string>();
