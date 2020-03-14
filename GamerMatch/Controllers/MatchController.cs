@@ -124,6 +124,7 @@ namespace GamerMatch.Controllers
             };
 
             db.UserMatch.Add(newMatch);
+            db.SaveChanges();
             
         }
 
