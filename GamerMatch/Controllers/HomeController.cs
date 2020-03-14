@@ -32,17 +32,10 @@ namespace GamerMatch.Controllers
             matchController = new MatchController(config);
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            int test = await matchController.GetSteamRecentlyPlayed(matchController.SetTestUser());
 
-            string gameSearch = "Garry's Mod";
-
-            List<AspNetUsers> matchList = await databaseController.SearchMatchSteam(gameSearch);
-
-            return View(matchList);
-
-            //return View();
+            return View();
         }
 
         [Authorize]
@@ -107,22 +100,25 @@ namespace GamerMatch.Controllers
             }
         }
 
-        public async Task<IActionResult> Results(string game, string boardgame, string difficult)
+        public IActionResult Results(List<AspNetUsers> matchList)
         {
-            List<AspNetUsers> userList = new List<AspNetUsers>();
+            //List<AspNetUsers> userList = new List<AspNetUsers>();
 
-            if (difficult != null)
-            {
-                await foreach (var item in gc.AspNetUsers)
-                {
-                    if (item.UserPref == difficult)
-                    {
-                        userList.Add(item);
-                    }
-                }
-            }
+            //if (difficult != null)
+            //{
+            //    await foreach (var item in gc.AspNetUsers)
+            //    {
+            //        if (item.UserPref == difficult)
+            //        {
+            //            userList.Add(item);
+            //        }
+            //    }
+            //}
 
-            return View(userList);
+            //return View(userList);
+
+
+            return View(matchList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

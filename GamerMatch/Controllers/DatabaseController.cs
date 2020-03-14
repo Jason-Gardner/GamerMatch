@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GamerMatch.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -22,6 +23,7 @@ namespace GamerMatch.Controllers
         {
             GamerMatchContext db = new GamerMatchContext();
             List<AspNetUsers> matchList = new List<AspNetUsers>();
+            HttpContext.Session.SetString("Searched Game", gameSearch);
 
             foreach (AspNetUsers user in db.AspNetUsers)
             {
@@ -48,6 +50,7 @@ namespace GamerMatch.Controllers
         {
             GamerMatchContext db = new GamerMatchContext();
             List<AspNetUsers> matchList = new List<AspNetUsers>();
+            HttpContext.Session.SetString("Searched Game", gameTitle);
             List<string> gameList = new List<string>();
             string userGames = null;
 
