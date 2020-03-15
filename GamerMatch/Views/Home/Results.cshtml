@@ -20,7 +20,7 @@
                     <h4>Preferred Play Style: @user.UserPref</h4>
                     <h4>Match Rating: (To Be Added)</h4>
                     <h4>User Rating: (To Be Added)</h4>
-                    <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match")'" />
+                    <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = user.UserName })'" />
                     <button>Deny Match</button>
                 </td>
             </tr>

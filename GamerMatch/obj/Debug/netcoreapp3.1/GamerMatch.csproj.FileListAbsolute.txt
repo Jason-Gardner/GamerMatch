@@ -326,3 +326,5 @@ C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreap
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll

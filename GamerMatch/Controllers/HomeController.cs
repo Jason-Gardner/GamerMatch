@@ -44,6 +44,7 @@ namespace GamerMatch.Controllers
             FindUser();
             ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
             ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
+            ViewData["Friends"] = gc.UserMatch.ToList<UserMatch>();
             if(currentUser.SteamInfo != null)
             {
                 ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
@@ -112,8 +113,6 @@ namespace GamerMatch.Controllers
             FindUser();
 
             List<AspNetUsers> matchList = await databaseController.SearchSplit(steamTitle, boardTitle);
-
-
             return View(matchList);
         }
 

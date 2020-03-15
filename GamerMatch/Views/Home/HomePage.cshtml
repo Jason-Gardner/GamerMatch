@@ -103,6 +103,15 @@
         <div class="list-group-flush">
             <fieldset>
                 <legend>Friends List</legend>
+                <table>
+                    @foreach (var item in ViewData["Friends"] as List<UserMatch>)
+                    {
+                        if (item.UserSend == Model.Id)
+                        {
+                            <tr><td>@item.UserGet</td></tr>
+                        }
+                    }
+                </table>
 
             </fieldset>
 

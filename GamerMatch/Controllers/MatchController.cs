@@ -114,18 +114,17 @@ namespace GamerMatch.Controllers
             return matchNumber;
         }
 
-        public void MatchUsers(AspNetUsers matchUser)
+        public IActionResult MatchUsers(string matchUser)
         {
             AspNetUsers activeUser = FindUser();
-            UserMatch newMatch = new UserMatch()
-            {
-                UserSend = activeUser.Id,
-                UserGet = matchUser.Email
-            };
+            UserMatch newMatch = new UserMatch();
+            newMatch.UserSend = activeUser.Id;
+            newMatch.UserGet = matchUser;
 
             db.UserMatch.Add(newMatch);
             db.SaveChanges();
-            
+
+            return View("~/Home/HomePage");
         }
 
         public AspNetUsers FindUser()
@@ -134,7 +133,7 @@ namespace GamerMatch.Controllers
 
             foreach (var person in db.AspNetUsers)
             {
-                if (person.Email == User.Identity.Name)
+                if (person.UserName == User.Identity.Name)
                 {
                     activeUser = person;
                 }
