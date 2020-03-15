@@ -6,9 +6,17 @@
 }
 
 @model List<AspNetUsers>
-
 @*<h1>Results for @Context.Session.GetString("Searched Game")</h1>*@
-<h1>Results for @ViewBag.Title</h1>
+<h1>Results for</h1>
+<h2>
+    @foreach (var search in ViewData["Search"] as List<string>)
+    {
+        if (search != null)
+        {
+            @search
+        }
+    }
+</h2>
 <table>
     @foreach (AspNetUsers user in Model)
     {

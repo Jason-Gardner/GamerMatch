@@ -134,6 +134,12 @@ namespace GamerMatch.Controllers
                 }
             }
 
+            ViewData["Search"] = new List<string>
+            {
+                steamTitle,
+                boardTitle
+            };
+
             return View(displayList);
         }
 
