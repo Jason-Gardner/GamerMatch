@@ -44,7 +44,8 @@ namespace GamerMatch.Controllers
             FindUser();
             ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
             ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
-            ViewData["Friends"] = gc.UserMatch.ToList<UserMatch>();
+            ViewData["Friends"] = databaseController.GetMatches(currentUser);
+
             if(currentUser.SteamInfo != null)
             {
                 ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
@@ -108,12 +109,32 @@ namespace GamerMatch.Controllers
             }
         }
 
+
         public async Task<IActionResult> Results(string steamTitle, string boardTitle)
         {
             FindUser();
 
             List<AspNetUsers> matchList = await databaseController.SearchSplit(steamTitle, boardTitle);
-            return View(matchList);
+            List<AspNetUsers> displayList = new List<AspNetUsers>();
+            List<UserMatch> matches = gc.UserMatch.ToList<UserMatch>();
+
+            foreach (AspNetUsers user in matchList)
+            {
+                foreach  (UserMatch match in matches)
+                {
+                    List<string> users = match.UserGet.Split(',').ToList<string>();
+                    if (users.Contains(user.UserName))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        displayList.Add(user);
+                    }
+                }
+            }
+
+            return View(displayList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

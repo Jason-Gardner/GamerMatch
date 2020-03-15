@@ -104,12 +104,11 @@
             <fieldset>
                 <legend>Friends List</legend>
                 <table>
-                    @foreach (var item in ViewData["Friends"] as List<UserMatch>)
+                    @foreach (var item in ViewData["Friends"] as List<string>)
                     {
-                        if (item.UserSend == Model.Id)
-                        {
-                            <tr><td>@item.UserGet</td></tr>
-                        }
+                        <tr>
+                            <td>@item</td>
+                        </tr>
                     }
                 </table>
 

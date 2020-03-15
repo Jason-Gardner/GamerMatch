@@ -60,11 +60,11 @@ namespace GamerMatch.Controllers
             List<string> gameListActive = databaseController.GetBoardGames(activeUser.BoardGamePref);
             List<string> gameListMatched = databaseController.GetBoardGames(matchUser.BoardGamePref);
 
-            for(int i = 0; i < gameListActive.Count; i++)
+            for (int i = 0; i < gameListActive.Count; i++)
             {
-                for(int j = 0; j < gameListMatched.Count; j++)
+                for (int j = 0; j < gameListMatched.Count; j++)
                 {
-                    if(gameListActive[i] == gameListMatched[j])
+                    if (gameListActive[i] == gameListMatched[j])
                     {
                         matchNumber += 1;
                     }
@@ -117,14 +117,33 @@ namespace GamerMatch.Controllers
         public IActionResult MatchUsers(string matchUser)
         {
             AspNetUsers activeUser = FindUser();
-            UserMatch newMatch = new UserMatch();
-            newMatch.UserSend = activeUser.Id;
-            newMatch.UserGet = matchUser;
 
-            db.UserMatch.Add(newMatch);
+            List<UserMatch> users = db.UserMatch.ToList<UserMatch>();
+
+            foreach (var item in users)
+            {
+                if (item.UserSend == activeUser.Id)
+                {
+                    if (item.UserGet == null)
+                    {
+                        item.UserGet = matchUser;
+                    }
+                    else
+                    {
+                        item.UserGet += $",{matchUser}";
+                    }
+                }
+                else
+                {
+                    activeUser.UserMatch = new UserMatch();
+                    activeUser.UserMatch.UserSend = activeUser.Id;
+                    activeUser.UserMatch.UserGet = matchUser;
+                }
+            }
+
             db.SaveChanges();
 
-            return View("~/Home/HomePage");
+            return Redirect("~/Home/HomePage");
         }
 
         public AspNetUsers FindUser()

@@ -24,12 +24,12 @@ namespace GamerMatch.Controllers
         public async Task<List<AspNetUsers>> SearchSplit(string steamTitle, string boardTitle)
         {
             List<AspNetUsers> matchList = new List<AspNetUsers>();
-           
-            if(steamTitle == "null" && boardTitle != "null")
+
+            if (steamTitle == "null" && boardTitle != "null")
             {
                 matchList = SearchMatchBoardGames(boardTitle);
             }
-            else if(steamTitle != "null" && boardTitle == "null")
+            else if (steamTitle != "null" && boardTitle == "null")
             {
                 matchList = await SearchMatchSteam(steamTitle);
             }
@@ -96,13 +96,13 @@ namespace GamerMatch.Controllers
         }
 
         // Manipulates the data passed in the view to a string to be saved in the database
-        public string SetBoardGames (List<string> boardGameList)
+        public string SetBoardGames(List<string> boardGameList)
         {
             string boardGameString = null;
 
-            for(int i = 0; i < boardGameList.Count; i++)
+            for (int i = 0; i < boardGameList.Count; i++)
             {
-                if(i == 0)
+                if (i == 0)
                 {
                     boardGameString += boardGameList[i];
                 }
@@ -116,11 +116,28 @@ namespace GamerMatch.Controllers
         }
 
         // Manipulates the string stored into the database into a list for user comparison
-        public List<string> GetBoardGames (string boardGameString)
+        public List<string> GetBoardGames(string boardGameString)
         {
             List<string> boardGameList = boardGameString.Split(',').ToList<string>();
 
             return boardGameList;
+        }
+
+        public List<string> GetMatches(AspNetUsers currentUser)
+        {
+            GamerMatchContext db = new GamerMatchContext();
+            List<string> userList = new List<string>();
+            List<UserMatch> matchList = db.UserMatch.ToList<UserMatch>();
+
+            foreach (var user in matchList)
+            {
+                if (user.UserSend == currentUser.Id)
+                {
+                    userList = user.UserGet.Split(',').ToList<string>();
+                }
+            }
+
+            return userList;
         }
     }
 }
