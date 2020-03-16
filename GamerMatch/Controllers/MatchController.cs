@@ -147,21 +147,43 @@ namespace GamerMatch.Controllers
             return (matchList);
         }
 
-        public IActionResult DenyMatch(AspNetUsers user, string title)
+        public IActionResult DenyMatch(string user, string title)
         {
             AspNetUsers activeUser = FindUser();
 
             MatchTable Deny = new MatchTable();
         
-            Deny.UserGet = activeUser.Id;
-            Deny.UserSend = user.UserName;
+            Deny.UserSend = activeUser.Id;
+            Deny.UserGet = user;
             Deny.Status = 2;
             db.MatchTable.Add(Deny);
             db.SaveChanges();
 
             ViewData["Search"] = title;
 
-            return View("../Home/Results");
+            return Redirect("~/Home/HomePage");
+        }
+
+        public IActionResult Clear()
+        {
+            AspNetUsers activeUser = FindUser();
+
+            GamerMatchContext db = new GamerMatchContext();
+
+            foreach (MatchTable match in db.MatchTable)
+            {
+                if (match.UserSend == activeUser.Id)
+                {
+                    if (match.Status == 2)
+                    {
+                        match.Status = 3;
+                    }
+                }
+            }
+
+            db.SaveChanges();
+
+            return Redirect("~/Home/HomePage");
         }
 
         public AspNetUsers FindUser()

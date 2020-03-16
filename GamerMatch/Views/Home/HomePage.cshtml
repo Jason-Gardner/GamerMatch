@@ -111,6 +111,18 @@
                         </tr>
                     }
                 </table>
+                <legend>Ban List</legend>
+                <table>
+                    @foreach (var item in ViewData["Bans"] as List<string>)
+                    {
+                        <tr>
+                            <td>@item</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td><button type="button" value="Clear Bans" onclick="location.href='@Url.Action("Clear", "Match")'">Clear Bans</button></td>
+                    </tr>
+                </table>
 
             </fieldset>
 

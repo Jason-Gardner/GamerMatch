@@ -129,11 +129,34 @@ namespace GamerMatch.Controllers
             List<string> userList = new List<string>();
             List<MatchTable> matchList = db.MatchTable.ToList<MatchTable>();
 
-            foreach (var user in matchList)
+            foreach (MatchTable match in matchList)
             {
-                if (user.UserSend == currentUser.Id)
+                if (match.UserSend == currentUser.Id)
                 {
-                    userList = user.UserGet.Split(',').ToList<string>();
+                    if (match.Status == 1)
+                    {
+                        userList.Add(match.UserGet);
+                    }
+                }
+            }
+
+            return userList;
+        }
+
+        public List<string> GetBans(AspNetUsers currentUser)
+        {
+            GamerMatchContext db = new GamerMatchContext();
+            List<string> userList = new List<string>();
+            List<MatchTable> matchList = db.MatchTable.ToList<MatchTable>();
+
+            foreach (MatchTable match in matchList)
+            {
+                if (match.UserSend == currentUser.Id)
+                {
+                    if (match.Status == 2)
+                    {
+                        userList.Add(match.UserGet);
+                    }
                 }
             }
 

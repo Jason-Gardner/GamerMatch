@@ -26,8 +26,6 @@
     {
         if (Model[i].UserName != User.Identity.Name)
         {
-            matches.Add(Model[i].UserName);
-
             <tr>
                 <td>
                     <h4>Username: @Model[i].UserName</h4>
@@ -35,7 +33,7 @@
                     <h4>Match Rating: (To Be Added)</h4>
                     <h4>User Rating: (To Be Added)</h4>
                     <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = Model[i].UserName })'">Match</button>
-                    <button type="button" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { user = Model[i], title = title})'">Dismiss</button>
+                    <button type="button" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { user = Model[i].UserName, title = title})'">Dismiss</button>
                 </td>
             </tr>
         }

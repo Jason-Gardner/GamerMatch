@@ -45,15 +45,25 @@ namespace GamerMatch.Controllers
             ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
             ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
             ViewData["Friends"] = databaseController.GetMatches(currentUser);
+            ViewData["Bans"] = databaseController.GetBans(currentUser);
 
-            if(currentUser.SteamInfo != null)
+            try
             {
-                ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                if (currentUser.SteamInfo != null)
+                {
+                    ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                }
+                else
+                {
+                    ViewData["MyGames"] = null;
+                }
             }
-            else
+            catch (KeyNotFoundException)
             {
                 ViewData["MyGames"] = null;
             }
+
+           
             return View(currentUser);
         }
 
@@ -118,17 +128,20 @@ namespace GamerMatch.Controllers
             List<AspNetUsers> displayList = new List<AspNetUsers>();
             List<MatchTable> matches = gc.MatchTable.ToList<MatchTable>();
 
-            foreach (AspNetUsers user in matchList)
+            foreach (MatchTable match in matches)
             {
-                foreach  (MatchTable match in matches)
+                if (match.UserSend == currentUser.Id)
                 {
-                    if (match.UserGet == user.UserName)
+                    foreach (AspNetUsers user in matchList)
                     {
-                        continue;
-                    }
-                    else
-                    {
-                        displayList.Add(user);
+                        if (user.UserName == match.UserGet && match.Status != 3)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            displayList.Add(user);
+                        }
                     }
                 }
             }
@@ -139,7 +152,7 @@ namespace GamerMatch.Controllers
                 boardTitle
             };
 
-            return View(matchList);
+            return View(displayList);
         }
 
         public IActionResult Ratings()
