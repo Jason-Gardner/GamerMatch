@@ -46,14 +46,23 @@ namespace GamerMatch.Controllers
             ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
             ViewData["Friends"] = databaseController.GetMatches(currentUser);
 
-            if(currentUser.SteamInfo != null)
+            try
             {
-                ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                if (currentUser.SteamInfo != null)
+                {
+                    ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                }
+                else
+                {
+                    ViewData["MyGames"] = null;
+                }
             }
-            else
+            catch (KeyNotFoundException)
             {
                 ViewData["MyGames"] = null;
             }
+
+           
             return View(currentUser);
         }
 
