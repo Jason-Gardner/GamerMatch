@@ -138,10 +138,6 @@ namespace GamerMatch.Controllers
                         {
                             continue;
                         }
-                        else
-                        {
-                            displayList.Add(user);
-                        }
                     }
                 }
             }
