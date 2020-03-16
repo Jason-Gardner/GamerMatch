@@ -63,7 +63,7 @@ namespace GamerMatch.Controllers
                 ViewData["MyGames"] = null;
             }
 
-           
+
             return View(currentUser);
         }
 
@@ -152,12 +152,33 @@ namespace GamerMatch.Controllers
                 boardTitle
             };
 
-            return View(displayList);
+            if (displayList.Count == 0)
+            {
+                return View(matchList);
+            }
+            else
+            {
+                return View(displayList);
+            }
+            
         }
 
         public IActionResult Ratings()
         {
-            return View();
+            FindUser();
+
+            List<MatchTable> displayList = new List<MatchTable>();
+            List<MatchTable> matches = gc.MatchTable.ToList<MatchTable>();
+
+            foreach (MatchTable match in matches)
+            {
+                if (match.UserSend == currentUser.Id && match.Status == 1)
+                {
+                    displayList.Add(match);
+                }
+            }
+
+            return View(displayList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

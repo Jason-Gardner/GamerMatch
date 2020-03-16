@@ -152,7 +152,7 @@ namespace GamerMatch.Controllers
             AspNetUsers activeUser = FindUser();
 
             MatchTable Deny = new MatchTable();
-        
+
             Deny.UserSend = activeUser.Id;
             Deny.UserGet = user;
             Deny.Status = 2;
@@ -178,6 +178,42 @@ namespace GamerMatch.Controllers
                     {
                         match.Status = 3;
                     }
+                }
+            }
+
+            db.SaveChanges();
+
+            return Redirect("~/Home/HomePage");
+        }
+
+        public IActionResult RateUser(string username, int rating)
+        {
+            AspNetUsers activeUser = FindUser();
+            GamerMatchContext db = new GamerMatchContext();
+            foreach (MatchTable match in db.MatchTable)
+            {
+                if (username == match.UserGet && activeUser.Id == match.UserSend)
+                {
+                    match.Rating = rating;
+                    continue;
+                }
+            }
+
+            db.SaveChanges();
+
+            foreach (var person in db.AspNetUsers)
+            {
+                if (person.UserName == username)
+                {
+                    if (person.PlayerRating == null)
+                    {
+                        person.PlayerRating = 0;
+                        person.RatingCount = 0;
+                    }
+
+                    person.PlayerRating += rating;
+                    person.RatingCount += 1;
+                    db.Update(person);
                 }
             }
 

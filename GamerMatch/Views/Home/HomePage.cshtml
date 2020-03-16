@@ -106,13 +106,16 @@
                 <table>
                     @if (ViewData["Friends"] != null)
                     {
-                        foreach (var item in ViewData["Friends"] as List<string>)
+                        foreach (var friend in ViewData["Friends"] as List<string>)
                         {
                             <tr>
-                                <td>@item</td>
+                                <td>@friend</td>
                             </tr>
                         }
                     }
+                    <tr>
+                        <td><button type="button" value="Rate Player" onclick="location.href='@Url.Action("Ratings", "Home")'">Rate Players</button></td>
+                    </tr>
 
                 </table>
                 <legend>Ban List</legend>
