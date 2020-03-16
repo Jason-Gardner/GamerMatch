@@ -104,12 +104,16 @@
             <fieldset>
                 <legend>Friends List</legend>
                 <table>
-                    @foreach (var item in ViewData["Friends"] as List<string>)
+                    @if (ViewData["Friends"] != null)
                     {
-                        <tr>
-                            <td>@item</td>
-                        </tr>
+                        foreach (var item in ViewData["Friends"] as List<string>)
+                        {
+                            <tr>
+                                <td>@item</td>
+                            </tr>
+                        }
                     }
+
                 </table>
                 <legend>Ban List</legend>
                 <table>
