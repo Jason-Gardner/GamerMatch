@@ -329,4 +329,7 @@ C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreap
 C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Ratings.cshtml.g.cs
+<<<<<<< HEAD
 C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Ratings.cshtml.g.cs
+=======
+>>>>>>> 08cb8ac542ff0235f017fa70e341de77561f73ff
