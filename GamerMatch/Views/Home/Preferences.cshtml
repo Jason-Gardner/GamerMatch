@@ -15,10 +15,10 @@
                 <label for="steam">Steam ID (Optional)</label>
                 @if (Model.SteamInfo != null)
                 {
-                    <input type="text" placeholder="@Model.SteamInfo" />
+                    <input type="text" placeholder="@Model.SteamInfo" name="steam"/>
                 }else
                 {
-                    <input type="text" />
+                    <input type="text" name="steam"/>
                 }
                 
             </div>
