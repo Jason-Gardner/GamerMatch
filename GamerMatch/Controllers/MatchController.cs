@@ -118,27 +118,15 @@ namespace GamerMatch.Controllers
         {
             AspNetUsers activeUser = FindUser();
 
-            Matches newMatch = new Matches();
+            MatchTable newMatch = new MatchTable();
             newMatch.UserSend = activeUser.Id;
             newMatch.UserGet = matchUser;
             newMatch.Status = 1;
 
-            db.Matches.Add(newMatch);
+            db.MatchTable.Add(newMatch);
             db.SaveChanges();
 
             return Redirect("~/Home/HomePage");
-        }
-
-        public IActionResult DenyMatch(List<string> matchNames, int listIndex, string title)
-        {
-            List<AspNetUsers> matchList = RegenerateMatchList(matchNames);
-            List<string> titleList = new List<string>();
-            titleList.Add(title);
-
-            matchList.RemoveAt(listIndex);
-            ViewData["Search"] = titleList;
-
-            return View("../Home/Results", matchList);
         }
 
         public List<AspNetUsers> RegenerateMatchList(List<string> matchNames)
@@ -159,34 +147,21 @@ namespace GamerMatch.Controllers
             return (matchList);
         }
 
-        public IActionResult DenyMatch(List<string> matchNames, int listIndex, string title)
+        public IActionResult DenyMatch(AspNetUsers user, string title)
         {
-            List<AspNetUsers> matchList = RegenerateMatchList(matchNames);
-            List<string> titleList = new List<string>();
-            titleList.Add(title);
+            AspNetUsers activeUser = FindUser();
 
-            matchList.RemoveAt(listIndex);
-            ViewData["Search"] = titleList;
+            MatchTable Deny = new MatchTable();
+        
+            Deny.UserGet = activeUser.Id;
+            Deny.UserSend = user.UserName;
+            Deny.Status = 2;
+            db.MatchTable.Add(Deny);
+            db.SaveChanges();
 
-            return View("../Home/Results", matchList);
-        }
+            ViewData["Search"] = title;
 
-        public List<AspNetUsers> RegenerateMatchList(List<string> matchNames)
-        {
-            List<AspNetUsers> matchList = new List<AspNetUsers>();
-
-            for(int i = 0; i < matchNames.Count; i ++)
-            {
-                foreach(AspNetUsers user in db.AspNetUsers)
-                {
-                    if(matchNames[i] == user.UserName)
-                    {
-                        matchList.Add(user);
-                    }
-                }
-            }
-
-            return (matchList);
+            return View("../Home/Results");
         }
 
         public AspNetUsers FindUser()

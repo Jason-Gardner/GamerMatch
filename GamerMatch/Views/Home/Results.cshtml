@@ -35,7 +35,7 @@
                     <h4>Match Rating: (To Be Added)</h4>
                     <h4>User Rating: (To Be Added)</h4>
                     <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = Model[i].UserName })'">Match</button>
-                    <button type="button" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { matchNames = matches, listIndex = i, title})'">Dismiss</button>
+                    <button type="button" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { user = Model[i], title = title})'">Dismiss</button>
                 </td>
             </tr>
         }

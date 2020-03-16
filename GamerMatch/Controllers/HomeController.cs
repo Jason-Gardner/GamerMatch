@@ -116,11 +116,11 @@ namespace GamerMatch.Controllers
 
             List<AspNetUsers> matchList = await databaseController.SearchSplit(steamTitle, boardTitle);
             List<AspNetUsers> displayList = new List<AspNetUsers>();
-            List<Matches> matches = gc.Matches.ToList<Matches>();
+            List<MatchTable> matches = gc.MatchTable.ToList<MatchTable>();
 
             foreach (AspNetUsers user in matchList)
             {
-                foreach  (Matches match in matches)
+                foreach  (MatchTable match in matches)
                 {
                     if (match.UserGet == user.UserName)
                     {
@@ -139,7 +139,7 @@ namespace GamerMatch.Controllers
                 boardTitle
             };
 
-            return View(displayList);
+            return View(matchList);
         }
 
         public IActionResult Ratings()

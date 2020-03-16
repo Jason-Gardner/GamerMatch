@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GamerMatch.Models
 {
-    public partial class Matches
+    public partial class MatchTable
     {
         public int Id { get; set; }
         public string UserSend { get; set; }
