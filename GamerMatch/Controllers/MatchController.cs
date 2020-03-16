@@ -118,32 +118,45 @@ namespace GamerMatch.Controllers
         {
             AspNetUsers activeUser = FindUser();
 
-            List<UserMatch> users = db.UserMatch.ToList<UserMatch>();
+            Matches newMatch = new Matches();
+            newMatch.UserSend = activeUser.Id;
+            newMatch.UserGet = matchUser;
+            newMatch.Status = 1;
 
-            foreach (var item in users)
-            {
-                if (item.UserSend == activeUser.Id)
-                {
-                    if (item.UserGet == null)
-                    {
-                        item.UserGet = matchUser;
-                    }
-                    else
-                    {
-                        item.UserGet += $",{matchUser}";
-                    }
-                }
-                else
-                {
-                    activeUser.UserMatch = new UserMatch();
-                    activeUser.UserMatch.UserSend = activeUser.Id;
-                    activeUser.UserMatch.UserGet = matchUser;
-                }
-            }
-
+            db.Matches.Add(newMatch);
             db.SaveChanges();
 
             return Redirect("~/Home/HomePage");
+        }
+
+        public IActionResult DenyMatch(List<string> matchNames, int listIndex, string title)
+        {
+            List<AspNetUsers> matchList = RegenerateMatchList(matchNames);
+            List<string> titleList = new List<string>();
+            titleList.Add(title);
+
+            matchList.RemoveAt(listIndex);
+            ViewData["Search"] = titleList;
+
+            return View("../Home/Results", matchList);
+        }
+
+        public List<AspNetUsers> RegenerateMatchList(List<string> matchNames)
+        {
+            List<AspNetUsers> matchList = new List<AspNetUsers>();
+
+            for (int i = 0; i < matchNames.Count; i++)
+            {
+                foreach (AspNetUsers user in db.AspNetUsers)
+                {
+                    if (matchNames[i] == user.UserName)
+                    {
+                        matchList.Add(user);
+                    }
+                }
+            }
+
+            return (matchList);
         }
 
         public AspNetUsers FindUser()

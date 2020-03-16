@@ -116,14 +116,13 @@ namespace GamerMatch.Controllers
 
             List<AspNetUsers> matchList = await databaseController.SearchSplit(steamTitle, boardTitle);
             List<AspNetUsers> displayList = new List<AspNetUsers>();
-            List<UserMatch> matches = gc.UserMatch.ToList<UserMatch>();
+            List<Matches> matches = gc.Matches.ToList<Matches>();
 
             foreach (AspNetUsers user in matchList)
             {
-                foreach  (UserMatch match in matches)
+                foreach  (Matches match in matches)
                 {
-                    List<string> users = match.UserGet.Split(',').ToList<string>();
-                    if (users.Contains(user.UserName))
+                    if (match.UserGet == user.UserName)
                     {
                         continue;
                     }
@@ -141,6 +140,11 @@ namespace GamerMatch.Controllers
             };
 
             return View(displayList);
+        }
+
+        public IActionResult Ratings()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

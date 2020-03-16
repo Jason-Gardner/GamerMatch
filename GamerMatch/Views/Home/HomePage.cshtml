@@ -40,10 +40,10 @@
 
             <fieldset>
                 <legend>Search Options</legend>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label for="userName">User Name</label>
                     <input class="form-control" type="Text" name="userName" pattern="[A-Za-z0-9]+" />
-                </div>
+                </div>*@
                 @if (ViewData["MyGames"] != null)
                 {
                     <div class="form-group">
@@ -58,7 +58,7 @@
                     </div>
                 }
                 <div class="form-group">
-                    <input class="form-control btn btn-primary" type="submit" />
+                    <input class="form-control btn btn-primary" type="submit" value="Search" />
                 </div>
                 <div class="form-group">
                     <label for="boardgame">Board Game Title</label>
@@ -72,10 +72,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input class="form-control btn btn-primary" type="submit" />
+                    <input class="form-control btn btn-primary" type="submit" value="Search" />
                 </div>
                 <div class="form-group">
-                    <fieldset>
+                    @*<fieldset>
                         <legend>Type Of Play</legend>
 
                         <select name="difficult">
@@ -85,7 +85,7 @@
                             <option value="win">Play to Win</option>
                         </select>
 
-                    </fieldset>
+                    </fieldset>*@
                 </div>
 
             </fieldset>

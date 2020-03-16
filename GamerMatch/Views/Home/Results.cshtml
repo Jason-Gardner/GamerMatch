@@ -6,30 +6,36 @@
 }
 
 @model List<AspNetUsers>
-@*<h1>Results for @Context.Session.GetString("Searched Game")</h1>*@
+@{
+    List<string> matches = new List<string>();
+    string title = null;
+}
 <h1>Results for</h1>
 <h2>
     @foreach (var search in ViewData["Search"] as List<string>)
     {
-        if (search != null)
+        if (search != null && search != "null")
         {
             @search
+            title = search;
         }
     }
 </h2>
 <table>
-    @foreach (AspNetUsers user in Model)
+    @for (int i = 0; i < Model.Count; i++)
     {
-        if (user.UserName != User.Identity.Name)
+        if (Model[i].UserName != User.Identity.Name)
         {
+            matches.Add(Model[i].UserName);
+
             <tr>
                 <td>
-                    <h4>Username: @user.UserName</h4>
-                    <h4>Preferred Play Style: @user.UserPref</h4>
+                    <h4>Username: @Model[i].UserName</h4>
+                    <h4>Preferred Play Style: @Model[i].UserPref</h4>
                     <h4>Match Rating: (To Be Added)</h4>
                     <h4>User Rating: (To Be Added)</h4>
-                    <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = user.UserName })'" />
-                    <button>Deny Match</button>
+                    <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = Model[i].UserName })'">Match</button>
+                    <button type="button" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { matchNames = matches, listIndex = i, title})'">Dismiss</button>
                 </td>
             </tr>
         }

@@ -127,7 +127,7 @@ namespace GamerMatch.Controllers
         {
             GamerMatchContext db = new GamerMatchContext();
             List<string> userList = new List<string>();
-            List<UserMatch> matchList = db.UserMatch.ToList<UserMatch>();
+            List<Matches> matchList = db.Matches.ToList<Matches>();
 
             foreach (var user in matchList)
             {
