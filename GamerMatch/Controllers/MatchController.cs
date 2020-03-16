@@ -146,6 +146,36 @@ namespace GamerMatch.Controllers
             return Redirect("~/Home/HomePage");
         }
 
+        public IActionResult DenyMatch(List<string> matchNames, int listIndex, string title)
+        {
+            List<AspNetUsers> matchList = RegenerateMatchList(matchNames);
+            List<string> titleList = new List<string>();
+            titleList.Add(title);
+
+            matchList.RemoveAt(listIndex);
+            ViewData["Search"] = titleList;
+
+            return View("../Home/Results", matchList);
+        }
+
+        public List<AspNetUsers> RegenerateMatchList(List<string> matchNames)
+        {
+            List<AspNetUsers> matchList = new List<AspNetUsers>();
+
+            for(int i = 0; i < matchNames.Count; i ++)
+            {
+                foreach(AspNetUsers user in db.AspNetUsers)
+                {
+                    if(matchNames[i] == user.UserName)
+                    {
+                        matchList.Add(user);
+                    }
+                }
+            }
+
+            return (matchList);
+        }
+
         public AspNetUsers FindUser()
         {
             AspNetUsers activeUser = new AspNetUsers();
