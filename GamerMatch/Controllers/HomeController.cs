@@ -136,7 +136,6 @@ namespace GamerMatch.Controllers
                 {
                     if (match.UserGet == user.UserName)
                     {
-<<<<<<< HEAD
                         if (match.UserSend == currentUser.Id)
                         {
                             if (match.Status == 3)
@@ -152,12 +151,12 @@ namespace GamerMatch.Controllers
                                 matched = true;
                                 continue;
                             }
-=======
-                        if (user.UserName == match.UserGet && match.Status != 3)
-                        {
-                            continue;
->>>>>>> 80658707238e881b2c0ff83b7080c4ade37d8e25
                         }
+                    }
+
+                    if (user.UserName == match.UserGet && match.Status != 3)
+                    {
+                        continue;
                     }
                     else
                     {
@@ -171,10 +170,10 @@ namespace GamerMatch.Controllers
             }
 
             ViewData["Search"] = new List<string>
-            {
+                {
                 steamTitle,
                 boardTitle
-            };
+                };
 
             if (displayList.Count == 0)
             {
@@ -185,8 +184,10 @@ namespace GamerMatch.Controllers
             {
                 return View(displayList);
             }
-
         }
+
+
+
 
         public IActionResult Ratings()
         {
