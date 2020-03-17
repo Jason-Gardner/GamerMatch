@@ -49,8 +49,8 @@
                             </h4>
                         }
 
-                        <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = user.UserName })'">Match</button>
-                        <button type="button" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { user = user.UserName, title = title})'">Dismiss</button>
+                        <button type="button" class="badge-success rounded" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = user.UserName })'">Match</button>
+                        <button type="button" class="badge-danger rounded" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { user = user.UserName, title = title})'">Dismiss</button>
                     </td>
                 </tr>
             }

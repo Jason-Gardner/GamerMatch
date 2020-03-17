@@ -9,6 +9,8 @@
     <div class="text-center">
         <form asp-controller="Match" asp-action="RateUser">
             <h1>Rate Your Match</h1>
+            <p><i>Part of building a strong community is providing feedback.<br /> 
+                Please only provide feedback on a user once you have had the oppportunity to connect and play a game together.</i></p>
             <select name="username">
                 @foreach (MatchTable match in Model)
                 {

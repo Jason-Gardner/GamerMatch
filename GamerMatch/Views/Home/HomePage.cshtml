@@ -24,6 +24,7 @@
         box-sizing: padding-box;
         width: auto;
         height: auto;
+        border: 2px solid purple;
         padding: 10px
     }
 </style>
@@ -98,12 +99,10 @@
 <div id="rightbox">
 
     <div class="col-4">
-
-        <h4>@User.Identity.Name</h4>
-        <div class="list-group-flush">
+        <div>
             <fieldset>
-                <legend>Friends List</legend>
                 <table>
+                    <tr><td><h4>Friend List</h4></td></tr>
                     @if (ViewData["Friends"] != null)
                     {
                         foreach (var friend in ViewData["Friends"] as List<string>)
@@ -114,23 +113,22 @@
                         }
                     }
                     <tr>
-                        <td><button type="button" value="Rate Player" onclick="location.href='@Url.Action("Ratings", "Home")'">Rate Players</button></td>
+                        <td><button type="button" class="rounded badge-info" value="Rate Player" onclick="location.href='@Url.Action("Ratings", "Home")'">Rate Players</button></td>
                     </tr>
 
                 </table>
-                <legend>Ban List</legend>
-                <table>
+                
+                <table style="width: inherit">
+                    <tr><td><h4>Ban List</h4></td></tr>
                     @foreach (var item in ViewData["Bans"] as List<string>)
                     {
                         <tr>
                             <td>@item</td>
                         </tr>
                     }
-                    <tr>
-                        <td><button type="button" value="Clear Bans" onclick="location.href='@Url.Action("Clear", "Match")'">Clear Bans</button></td>
-                    </tr>
-                </table>
 
+                </table>
+                <button type="button" class="rounded badge-info" value="Clear Bans" onclick="location.href='@Url.Action("Clear", "Match")'">Clear Bans</button>
             </fieldset>
 
         </div>

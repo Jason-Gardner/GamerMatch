@@ -26,13 +26,16 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="HomePage">Search</a>
+                                <a class="nav-link text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="HomePage">Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="Ratings">Rate Players</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                         }
                     </ul>
