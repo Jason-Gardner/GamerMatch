@@ -186,9 +186,6 @@ namespace GamerMatch.Controllers
             }
         }
 
-
-
-
         public IActionResult Ratings()
         {
             FindUser();
@@ -205,6 +202,20 @@ namespace GamerMatch.Controllers
             }
 
             return View(displayList);
+        }
+
+        public IActionResult Profile(string friend)
+        {
+            AspNetUsers profile = new AspNetUsers();
+
+            foreach(AspNetUsers user in gc.AspNetUsers)
+            {
+                if (user.UserName == friend)
+                {
+                    profile = user;
+                }
+            }
+            return View(profile);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
