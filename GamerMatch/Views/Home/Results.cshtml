@@ -8,6 +8,8 @@
 @model List<AspNetUsers>
 @{
     List<string> matches = new List<string>();
+    GamerMatchContext db = new GamerMatchContext();
+    List<MatchTable> matchTableList = db.MatchTable.ToList<MatchTable>();
     string title = null;
 }
 <h1>Results for</h1>
@@ -23,6 +25,7 @@
 </h2>
 @{ if (Model != null)
     {
+<<<<<<< HEAD
         <table>
             @foreach (AspNetUsers user in Model)
             {
@@ -59,3 +62,53 @@
         <h4>ViewData["No"]</h4>
     }
 }
+=======
+    <table>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var rating = Model[i].PlayerRating / Model[i].RatingCount;
+            if (Model[i].UserName != User.Identity.Name)
+            {
+                for (int j = 0; j < matchTableList.Count; j++)
+                {
+                    if (Model[i].UserName == matchTableList[j].UserGet && matchTableList[j].Status == 2)
+                    {
+                        Model.RemoveAt(i);
+                    }
+
+
+                }
+                {
+                    <tr>
+                        <td>
+                            <h4>Username: @Model[i].UserName</h4>
+                            <h4>Preferred Play Style: @Model[i].UserPref</h4>
+                            <h4>Match Rating: (To Be Added)</h4>
+                            @if (Model[i].PlayerRating == null)
+                            {
+                                <h4>
+                                    User Rating: No Rating!
+                                </h4>
+                            }
+                            else
+                            {
+                                <h4>
+                                    User Rating: @string.Format("{0:N2}", rating)
+                                </h4>
+                            }
+                            <button type="button" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = Model[i].UserName })'">Match</button>
+                            <button type="button" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { user = Model[i].UserName, title = title})'">Dismiss</button>
+                        </td>
+                    </tr>
+                }
+
+            }
+        }
+    </table>
+    }
+    else
+    {
+        <h4>ViewData["No"]</h4>
+    }
+}
+>>>>>>> 80658707238e881b2c0ff83b7080c4ade37d8e25
