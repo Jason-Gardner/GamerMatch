@@ -127,22 +127,40 @@ namespace GamerMatch.Controllers
             List<AspNetUsers> matchList = await databaseController.SearchSplit(steamTitle, boardTitle);
             List<AspNetUsers> displayList = new List<AspNetUsers>();
             List<MatchTable> matches = gc.MatchTable.ToList<MatchTable>();
+            bool matched;
 
-            foreach (MatchTable match in matches)
+            foreach (AspNetUsers user in matchList)
             {
-                if (match.UserSend == currentUser.Id)
+                matched = false;
+                foreach (MatchTable match in matches)
                 {
-                    foreach (AspNetUsers user in matchList)
+                    if (match.UserGet == user.UserName)
                     {
-                        if (user.UserName == match.UserGet && match.Status != 3)
+                        if (match.UserSend == currentUser.Id)
                         {
-                            continue;
-                        }
-                        else
-                        {
-                            displayList.Add(user);
+                            if (match.Status == 3)
+                            {
+                                if (!displayList.Contains(user))
+                                {
+                                    matched = true;
+                                    displayList.Add(user);
+                                }
+                            }
+                            else
+                            {
+                                matched = true;
+                                continue;
+                            }
                         }
                     }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                if (matched == false && user.Id != currentUser.Id)
+                {
+                    displayList.Add(user);
                 }
             }
 
@@ -154,13 +172,14 @@ namespace GamerMatch.Controllers
 
             if (displayList.Count == 0)
             {
-                return View(matchList);
+                ViewData["No"] = "No search results found.";
+                return View();
             }
             else
             {
                 return View(displayList);
             }
-            
+
         }
 
         public IActionResult Ratings()
@@ -172,7 +191,7 @@ namespace GamerMatch.Controllers
 
             foreach (MatchTable match in matches)
             {
-                if (match.UserSend == currentUser.Id && match.Status == 1)
+                if (match.UserSend == currentUser.Id && match.Status == 1 && match.Rating == null)
                 {
                     displayList.Add(match);
                 }

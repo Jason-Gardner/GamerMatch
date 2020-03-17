@@ -117,8 +117,22 @@ namespace GamerMatch.Controllers
         public IActionResult MatchUsers(string matchUser)
         {
             AspNetUsers activeUser = FindUser();
-
+            List<MatchTable> matches = db.MatchTable.ToList<MatchTable>();
             MatchTable newMatch = new MatchTable();
+
+            foreach (MatchTable match in matches)
+            {
+                if (match.UserSend == activeUser.Id)
+                {
+                    if (match.UserGet == matchUser && (match.Status == 1 | match.Status == 3))
+                    {
+                        match.Status = 1;
+                        db.SaveChanges();
+                        return Redirect("~/Home/HomePage");
+                    }
+                }
+            }
+
             newMatch.UserSend = activeUser.Id;
             newMatch.UserGet = matchUser;
             newMatch.Status = 1;
@@ -150,6 +164,21 @@ namespace GamerMatch.Controllers
         public IActionResult DenyMatch(string user, string title)
         {
             AspNetUsers activeUser = FindUser();
+            List<MatchTable> matches = db.MatchTable.ToList<MatchTable>();
+            MatchTable newMatch = new MatchTable();
+
+            foreach (MatchTable match in matches)
+            {
+                if (match.UserSend == activeUser.Id)
+                {
+                    if (match.UserSend == user && match.Status != 2)
+                    {
+                        match.Status = 2;
+                        db.SaveChanges();
+                        return Redirect("~/Home/HomePage");
+                    }
+                }
+            }
 
             MatchTable Deny = new MatchTable();
 
@@ -194,8 +223,17 @@ namespace GamerMatch.Controllers
             {
                 if (username == match.UserGet && activeUser.Id == match.UserSend)
                 {
-                    match.Rating = rating;
-                    continue;
+                    if (match.Rating == null)
+                    {
+                        match.Rating = rating;
+                        db.Update(match);
+                        continue;
+                    }
+                    else
+                    {
+                        return Redirect("~/Home/HomePage");
+                    }
+
                 }
             }
 

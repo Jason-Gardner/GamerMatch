@@ -29,7 +29,7 @@ namespace GamerMatch.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=tcp:gamermatch.database.windows.net,1433;Initial Catalog=GamerMatch;Persist Security Info=False;User ID=GamerMatch;Password=Inari_2007;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                optionsBuilder.UseSqlServer("Server=tcp:gamermatchdb.database.windows.net,1433;Initial Catalog=GamerMatch;Persist Security Info=False;User ID=GamerMatch;Password=Inari_2007;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
