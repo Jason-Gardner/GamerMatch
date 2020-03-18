@@ -70,6 +70,10 @@ namespace GamerMatch.Controllers
         public IActionResult Preferences()
         {
             FindUser();
+            
+            ViewData["Friends"] = databaseController.GetMatches(currentUser);
+            ViewData["Bans"] = databaseController.GetBans(currentUser);
+
             ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
             return View(currentUser);
         }
@@ -77,6 +81,9 @@ namespace GamerMatch.Controllers
         public async Task<IActionResult> UserPerf(string steam, string difficulty, string[] boardgames)
         {
             FindUser();
+            
+            ViewData["Friends"] = databaseController.GetMatches(currentUser);
+            ViewData["Bans"] = databaseController.GetBans(currentUser);
 
             List<string> myGames = boardgames.ToList<string>();
             currentUser.BoardGamePref = databaseController.SetBoardGames(myGames);
@@ -123,6 +130,9 @@ namespace GamerMatch.Controllers
         public async Task<IActionResult> Results(string steamTitle, string boardTitle)
         {
             FindUser();
+            
+            ViewData["Friends"] = databaseController.GetMatches(currentUser);
+            ViewData["Bans"] = databaseController.GetBans(currentUser);
 
             List<AspNetUsers> matchList = await databaseController.SearchSplit(steamTitle, boardTitle);
             List<AspNetUsers> displayList = new List<AspNetUsers>();
@@ -192,6 +202,9 @@ namespace GamerMatch.Controllers
         public IActionResult Ratings()
         {
             FindUser();
+            
+            ViewData["Friends"] = databaseController.GetMatches(currentUser);
+            ViewData["Bans"] = databaseController.GetBans(currentUser);
 
             List<MatchTable> displayList = new List<MatchTable>();
             List<MatchTable> matches = gc.MatchTable.ToList<MatchTable>();

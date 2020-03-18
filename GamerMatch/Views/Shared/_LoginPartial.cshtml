@@ -3,27 +3,69 @@
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <button type="button" class="nav-link btn text-light badge-info">@User.Identity.Name</button>
-    </li>
-    <li class="nav-item">
-        <a  class="nav-link btn text-light btn-hover-text-info" asp-area="Home" asp-action="Preferences" title="Manage">Manage Profile</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn text-light btn-hover-text-info">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <button type="button" class="nav-link btn text-light badge-info">@User.Identity.Name</button>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn text-light btn-hover-text-info" asp-area="Home" asp-action="Preferences" title="Manage">Manage Profile</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn text-light btn-hover-text-info">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
 </ul>
+
+@if (SignInManager.IsSignedIn(User) && (string)ViewData["Title"] != "Home Page")
+{
+    <div class="sidenav">
+        <div class="col-sm-9">
+            <div>
+                <fieldset>
+                    <table>
+                        <tr><td><h4>Friend List</h4></td></tr>
+                        @if (ViewData["Friends"] != null)
+                        {
+                            foreach (var friend in ViewData["Friends"] as List<string>)
+                            {
+                                <tr>
+                                    <td>@friend</td>
+                                </tr>
+                            }
+                        }
+                        <tr>
+                            <td><button type="button" class="rounded badge-info" value="Rate Player" onclick="location.href='@Url.Action("Ratings", "Home")'">Rate Players</button></td>
+                        </tr>
+
+                    </table>
+
+                    <table style="width: inherit">
+                        <tr><td><h4>Ban List</h4></td></tr>
+                        @if (ViewData["Bans"] != null)
+                        {
+                            @foreach (var item in ViewData["Bans"] as List<string>)
+                            {
+                                <tr>
+                                    <td>@item</td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                    <button type="button" class="rounded badge-info" value="Clear Bans" onclick="location.href='@Url.Action("Clear", "Match")'">Clear Bans</button>
+                </fieldset>
+
+            </div>
+        </div>
+    </div>  }
