@@ -34,7 +34,6 @@ namespace GamerMatch.Controllers
 
         public IActionResult Index()
         {
-
             return View();
         }
 
@@ -42,8 +41,9 @@ namespace GamerMatch.Controllers
         public async Task<IActionResult> HomePage()
         {
             FindUser();
+
             ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
-            ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
+            //ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
             ViewData["Friends"] = databaseController.GetMatches(currentUser);
             ViewData["Bans"] = databaseController.GetBans(currentUser);
 
@@ -67,14 +67,31 @@ namespace GamerMatch.Controllers
             return View(currentUser);
         }
 
-        public IActionResult Preferences()
+        public async Task<IActionResult> Preferences()
         {
             FindUser();
-            
+
+            ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
+            ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
             ViewData["Friends"] = databaseController.GetMatches(currentUser);
             ViewData["Bans"] = databaseController.GetBans(currentUser);
 
-            ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
+            try
+            {
+                if (currentUser.SteamInfo != null)
+                {
+                    ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                }
+                else
+                {
+                    ViewData["MyGames"] = null;
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                ViewData["MyGames"] = null;
+            }
+
             return View(currentUser);
         }
 
@@ -84,6 +101,21 @@ namespace GamerMatch.Controllers
             
             ViewData["Friends"] = databaseController.GetMatches(currentUser);
             ViewData["Bans"] = databaseController.GetBans(currentUser);
+            try
+            {
+                if (currentUser.SteamInfo != null)
+                {
+                    ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                }
+                else
+                {
+                    ViewData["MyGames"] = null;
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                ViewData["MyGames"] = null;
+            }
 
             List<string> myGames = boardgames.ToList<string>();
             currentUser.BoardGamePref = databaseController.SetBoardGames(myGames);
@@ -130,9 +162,27 @@ namespace GamerMatch.Controllers
         public async Task<IActionResult> Results(string steamTitle, string boardTitle)
         {
             FindUser();
-            
+
+            ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
+            ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
             ViewData["Friends"] = databaseController.GetMatches(currentUser);
             ViewData["Bans"] = databaseController.GetBans(currentUser);
+
+            try
+            {
+                if (currentUser.SteamInfo != null)
+                {
+                    ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                }
+                else
+                {
+                    ViewData["MyGames"] = null;
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                ViewData["MyGames"] = null;
+            }
 
             List<AspNetUsers> matchList = await databaseController.SearchSplit(steamTitle, boardTitle);
             List<AspNetUsers> displayList = new List<AspNetUsers>();
@@ -196,12 +246,30 @@ namespace GamerMatch.Controllers
             }
         }
 
-        public IActionResult Ratings()
+        public async Task<IActionResult> Ratings()
         {
             FindUser();
-            
+
+            ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
+            ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
             ViewData["Friends"] = databaseController.GetMatches(currentUser);
             ViewData["Bans"] = databaseController.GetBans(currentUser);
+
+            try
+            {
+                if (currentUser.SteamInfo != null)
+                {
+                    ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                }
+                else
+                {
+                    ViewData["MyGames"] = null;
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                ViewData["MyGames"] = null;
+            }
 
             List<MatchTable> displayList = new List<MatchTable>();
             List<MatchTable> matches = gc.MatchTable.ToList<MatchTable>();
@@ -217,17 +285,41 @@ namespace GamerMatch.Controllers
             return View(displayList);
         }
 
-        public IActionResult Profile(string friend)
+        public async Task<IActionResult> Profile(string friend)
         {
             AspNetUsers profile = new AspNetUsers();
 
-            foreach(AspNetUsers user in gc.AspNetUsers)
+            FindUser();
+
+            ViewData["Games"] = gc.BoardGames.ToList<BoardGames>();
+            ViewData["Users"] = gc.AspNetUsers.ToList<AspNetUsers>();
+            ViewData["Friends"] = databaseController.GetMatches(currentUser);
+            ViewData["Bans"] = databaseController.GetBans(currentUser);
+
+            try
+            {
+                if (currentUser.SteamInfo != null)
+                {
+                    ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                }
+                else
+                {
+                    ViewData["MyGames"] = null;
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                ViewData["MyGames"] = null;
+            }
+
+            foreach (AspNetUsers user in gc.AspNetUsers)
             {
                 if (user.UserName == friend)
                 {
                     profile = user;
                 }
             }
+
             return View(profile);
         }
 

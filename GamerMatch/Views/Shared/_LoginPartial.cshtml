@@ -31,41 +31,72 @@
 @if (SignInManager.IsSignedIn(User) && (string)ViewData["Title"] != "Home Page")
 {
     <div class="sidenav">
-        <div class="col-sm-9">
-            <div>
-                <fieldset>
-                    <table>
-                        <tr><td><h4>Friend List</h4></td></tr>
-                        @if (ViewData["Friends"] != null)
-                        {
-                            foreach (var friend in ViewData["Friends"] as List<string>)
+        <div class="text-center">
+            <fieldset>
+                <form asp-controller="Home" asp-action="Profile">
+                    <div class="form-group align-content-center">
+                        <label for="friend">Friends List</label>
+                        <select name="friend" style="max-width: 70%">
+                            <option value=null></option>
+                            @foreach (var item in ViewData["Friends"] as List<string>)
                             {
-                                <tr>
-                                    <td>@friend</td>
-                                </tr>
+                                <option value="@item">@item</option>
                             }
-                        }
-                        <tr>
-                            <td><button type="button" class="rounded badge-info" value="Rate Player" onclick="location.href='@Url.Action("Ratings", "Home")'">Rate Players</button></td>
-                        </tr>
-
-                    </table>
-
-                    <table style="width: inherit">
-                        <tr><td><h4>Ban List</h4></td></tr>
-                        @if (ViewData["Bans"] != null)
+                        </select>
+                        <input class="form-control btn btn-primary" type="submit" value="View Profile" />
+                    </div>
+                </form>
+                <div class="form-group align-content-center">
+                    <label for="ban">Ban List</label>
+                    <select name="ban" style="min-width:70%; max-width: 70%">
+                        <option value=null></option>
+                        @foreach (var item in ViewData["Bans"] as List<string>)
                         {
-                            @foreach (var item in ViewData["Bans"] as List<string>)
-                            {
-                                <tr>
-                                    <td>@item</td>
-                                </tr>
-                            }
+                            <option value="@item">@item</option>
                         }
-                    </table>
+                    </select>
                     <button type="button" class="rounded badge-info" value="Clear Bans" onclick="location.href='@Url.Action("Clear", "Match")'">Clear Bans</button>
-                </fieldset>
-
-            </div>
+                </div>
+                <button type="button" class="form-control btn btn-primary" value="Rate Player" onclick="location.href='@Url.Action("Ratings", "Home")'">Rate Players</button><br />
+            </fieldset>
         </div>
-    </div>  }
+        <form id="myformOne" style="padding-top: 10px;" asp-controller="Home" asp-action="Results" onsubmit="return ValidationEvent()">
+            <div id="leftbox">
+                <div class="text-center">
+                    <fieldset>
+                        <legend>Search Options</legend>
+                        
+                            <div class="form-group align-content-center">
+                                <label for="game">Steam Game Title</label>
+                                <select name="steamTitle" style="max-width: 70%">
+                                    <option value=null></option>
+                                    @foreach (var item in ViewData["MyGames"] as List<string>)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group align-content-center">
+                                <input class="form-control btn btn-primary" type="submit" value="Search" />
+                            </div>
+                        
+                        <div class="form-group">
+                            <label for="boardgame">Board Game Title</label>
+                            <select name="boardTitle" style="width: 70%">
+                                <option value=null></option>
+                                @foreach (var item in ViewData["Games"] as List<BoardGames>)
+                                {
+                                    <option value="@item.Title">@item.Title</option>
+                                }
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control btn btn-primary" type="submit" value="Search" />
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+}

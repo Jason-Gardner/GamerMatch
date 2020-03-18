@@ -331,3 +331,4 @@ C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\n
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.csproj.CoreCompileInputs.cache
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.genruntimeconfig.cache
+C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs

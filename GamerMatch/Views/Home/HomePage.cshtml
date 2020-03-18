@@ -6,29 +6,6 @@
 
 @model AspNetUsers
 
-
-
-<style>
-    #leftbox {
-        float: left;
-        display: flex;
-        box-sizing: padding-box;
-        width: auto;
-        height: auto;
-        padding: 10px
-    }
-
-    #rightbox {
-        float: right;
-        display: flex;
-        box-sizing: padding-box;
-        width: auto;
-        height: auto;
-        border: 2px solid purple;
-        padding: 10px
-    }
-</style>
-
 <div class="display-1">
     <div class="text-center">
         <p>Search</p>
@@ -37,19 +14,16 @@
 </div>
 <form id="myformOne" asp-controller="Home" asp-action="Results" onsubmit="return ValidationEvent()">
     <div id="leftbox">
-        <div class="col-8">
+        <div class="col-4 flex-column">
 
             <fieldset>
                 <legend>Search Options</legend>
-                @*<div class="form-group">
-                    <label for="userName">User Name</label>
-                    <input class="form-control" type="Text" name="userName" pattern="[A-Za-z0-9]+" />
-                </div>*@
+
                 @if (ViewData["MyGames"] != null)
                 {
                     <div class="form-group">
                         <label for="game">Steam Game Title</label>
-                        <select name="steamTitle">
+                        <select name="steamTitle" style="max-width: 70%">
                             <option value=null></option>
                             @foreach (var item in ViewData["MyGames"] as List<string>)
                             {
@@ -63,7 +37,7 @@
                 </div>
                 <div class="form-group">
                     <label for="boardgame">Board Game Title</label>
-                    <select name="boardTitle">
+                    <select name="boardTitle" style="width: 70%">
                         <option value=null></option>
                         @foreach (var item in ViewData["Games"] as List<BoardGames>)
                         {
@@ -75,20 +49,6 @@
                 <div class="form-group">
                     <input class="form-control btn btn-primary" type="submit" value="Search" />
                 </div>
-                <div class="form-group">
-                    @*<fieldset>
-                        <legend>Type Of Play</legend>
-
-                        <select name="difficult">
-                            <option value=""></option>
-                            <option value="casual">Casual Play</option>
-                            <option value="competitive">Competitive Play</option>
-                            <option value="win">Play to Win</option>
-                        </select>
-
-                    </fieldset>*@
-                </div>
-
             </fieldset>
         </div>
     </div>
@@ -96,7 +56,7 @@
 
 
 
-<div id="rightbox">
+@*<div id="rightbox">
 
     <div class="col-4">
         <div>
@@ -142,5 +102,5 @@
     </div>
 
 
-</div>
+</div>*@
 
