@@ -108,7 +108,11 @@
                         foreach (var friend in ViewData["Friends"] as List<string>)
                         {
                             <tr>
-                                <td>@friend</td>
+                                <td>
+                                    @friend
+                                    <button onclick="location.href='@Url.Action("Profile", "Home", new { friend = friend })'">Profile</button>
+
+                                </td>
                             </tr>
                         }
                     }
@@ -120,11 +124,14 @@
                 
                 <table style="width: inherit">
                     <tr><td><h4>Ban List</h4></td></tr>
-                    @foreach (var item in ViewData["Bans"] as List<string>)
+                    @if (ViewData["Bans"] != null)
                     {
-                        <tr>
-                            <td>@item</td>
-                        </tr>
+                        @foreach (var item in ViewData["Bans"] as List<string>)
+                        {
+                            <tr>
+                                <td>@item</td>
+                            </tr>
+                        }
                     }
 
                 </table>

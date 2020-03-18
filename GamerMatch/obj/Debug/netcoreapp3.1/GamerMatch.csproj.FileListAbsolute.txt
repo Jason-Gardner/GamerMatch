@@ -228,7 +228,6 @@ C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreap
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
-C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.resources.dll
@@ -289,7 +288,6 @@ C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreap
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.csprojAssemblyReference.cache
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\staticwebassets\GamerMatch.StaticWebAssets.Manifest.cache
@@ -330,3 +328,6 @@ C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreap
 C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.pdb
 C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.csproj.CoreCompileInputs.cache
 C:\Users\Jason Gardner\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.genruntimeconfig.cache
+C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.csproj.CoreCompileInputs.cache
+C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs
+C:\Users\mbate\source\repos\GamerMatch\GamerMatch\GamerMatch\obj\Debug\netcoreapp3.1\GamerMatch.genruntimeconfig.cache

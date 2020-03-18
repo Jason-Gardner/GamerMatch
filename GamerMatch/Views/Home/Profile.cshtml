@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AspNetUsers
+
+@{
+    GamerMatchContext db = new GamerMatchContext();
+    List<MatchTable> matchList = db.MatchTable.ToList<MatchTable>();
+    AspNetUsers currentUser = new AspNetUsers();
+    int? rating = null;
+
+    foreach (AspNetUsers user in db.AspNetUsers)
+    {
+        if (user.UserName == User.Identity.Name)
+        {
+            currentUser = user;
+        }
+    }
+}
+
+<h1>Profile</h1>
+
+<h3>Username: @Model.UserName</h3>
+<h3>Email: @Model.Email</h3>
+@if (Model.SteamInfo != null)
+{
+    <h3>Steam ID: @Model.SteamInfo</h3>
+}
+else
+{
+    <h3>Steam ID: Not connected.</h3>
+}
+@{
+    for (int i = 0; i < matchList.Count; i++)
+    {
+        if (matchList[i].UserSend == currentUser.Id && matchList[i].UserGet == Model.UserName)
+        {
+            rating = matchList[i].Rating;
+        }
+    }
+    @if (rating == null)
+
+    {
+        <h3>Your Rating: Not yet rated</h3>
+    }
+    else
+    {
+        <h3>Your Rating: @rating</h3>
+    }
+}
+<h3>Friends List:</h3>
+@foreach (MatchTable match in matchList)
+{
+    if (match.UserSend == Model.Id && match.Status == 1)
+    {
+        <h4>@match.UserGet</h4>
+    }
+}
