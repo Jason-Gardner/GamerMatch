@@ -73,17 +73,31 @@ namespace GamerMatch.Controllers
             return matchNumber;
         }
 
-        public int CompareBoardGameMatchTotal(bool userPrefMatch)
+        public int CompareBoardGameMatchTotal(AspNetUsers match)
         {
+            AspNetUsers activeUser = FindUser();
             int matchScore = 0;
 
             //Algorithm that weighs input parameters to generate match score
-            if (userPrefMatch)
+            if (CompareBoardGameUserPref(activeUser,match))
             {
                 matchScore += 100;
             }
 
             return matchScore;
+        }
+
+        public List<int> MatchTotalsList(List<AspNetUsers> matchList)
+        {
+            List<int> matchScoreList = new List<int>();
+            //if (TempData["SearchType"].ToString() == "Boardgame")
+            //{
+            foreach (AspNetUsers user in matchList)
+            {
+                matchScoreList.Add(CompareBoardGameMatchTotal(user));
+            }
+            //}
+            return matchScoreList;
         }
 
         public async Task<int> GetSteamRecentlyPlayed(AspNetUsers user)

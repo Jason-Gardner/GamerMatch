@@ -13,9 +13,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light badge-primary border-bottom box-shadow mb-3">
+        <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light badge-primary border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Group Up!</a>
+                <a class="navbar-brand" style="font-family: fantasy" asp-area="" asp-controller="Home" asp-action="Index">GamerMatch</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,16 +26,16 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="HomePage">Search</a>
+                                <a class="nav-link text-light btn-hover-text-info" style="font-family: 'Courier New'" asp-area="" asp-controller="Home" asp-action="HomePage">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="Ratings">Rate Players</a>
+                                <a class="nav-link text-light btn-hover-text-info" style="font-family: 'Courier New'" asp-area="" asp-controller="Home" asp-action="Ratings">Rate Players</a>
                             </li>                       
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-light btn-hover-text-info" style="font-family: 'Courier New'" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                         }
                     </ul>
@@ -43,13 +43,13 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" style="padding-top: 100px;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="fixed-bottom footer">
         <div class="container">
             &copy; 2020 - GamerMatch - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
