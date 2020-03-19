@@ -73,13 +73,12 @@ namespace GamerMatch.Controllers
             return matchNumber;
         }
 
-        public int CompareBoardGameMatchTotal(AspNetUsers match)
+        public int CompareBoardGameMatchTotal(AspNetUsers match, AspNetUsers currentUser)
         {
-            AspNetUsers activeUser = FindUser();
             int matchScore = 0;
 
             //Algorithm that weighs input parameters to generate match score
-            if (CompareBoardGameUserPref(activeUser,match))
+            if (CompareBoardGameUserPref(currentUser, match))
             {
                 matchScore += 100;
             }
@@ -87,14 +86,14 @@ namespace GamerMatch.Controllers
             return matchScore;
         }
 
-        public List<int> MatchTotalsList(List<AspNetUsers> matchList)
+        public List<int> MatchTotalsList(List<AspNetUsers> matchList, AspNetUsers currentUser)
         {
             List<int> matchScoreList = new List<int>();
             //if (TempData["SearchType"].ToString() == "Boardgame")
             //{
             foreach (AspNetUsers user in matchList)
             {
-                matchScoreList.Add(CompareBoardGameMatchTotal(user));
+                matchScoreList.Add(CompareBoardGameMatchTotal(user, currentUser));
             }
             //}
             return matchScoreList;
