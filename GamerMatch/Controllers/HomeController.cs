@@ -158,7 +158,6 @@ namespace GamerMatch.Controllers
             }
         }
 
-
         public async Task<IActionResult> Results(string steamTitle, string boardTitle)
         {
             FindUser();
@@ -319,6 +318,8 @@ namespace GamerMatch.Controllers
                     profile = user;
                 }
             }
+
+            ViewData["Current"] = JsonSerializer.Serialize(currentUser);
 
             return View(profile);
         }
