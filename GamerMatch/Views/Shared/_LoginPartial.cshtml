@@ -38,9 +38,12 @@
                         <label for="friend">Friends List</label>
                         <select name="friend" style="max-width: 70%">
                             <option value=null></option>
-                            @foreach (var item in ViewData["Friends"] as List<string>)
+                            @if (ViewData["Friends"] != null)
                             {
-                                <option value="@item">@item</option>
+                                foreach (var item in ViewData["Friends"] as List<string>)
+                                {
+                                    <option value="@item">@item</option>
+                                }
                             }
                         </select>
                         <input class="form-control btn btn-primary" type="submit" value="View Profile" />
@@ -69,9 +72,12 @@
                                 <label for="game">Steam Game Title</label>
                                 <select name="steamTitle" style="max-width: 70%">
                                     <option value=null></option>
-                                    @foreach (var item in ViewData["MyGames"] as List<string>)
+                                    @if (ViewData["MyGames"] != null)
                                     {
-                                        <option value="@item">@item</option>
+                                        foreach (var item in ViewData["MyGames"] as List<string>)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
                                     }
                                 </select>
                             </div>

@@ -54,6 +54,22 @@ namespace GamerMatch.Controllers
             return match;
         }
 
+        public decimal? GetUserRating(AspNetUsers activeUser, AspNetUsers matchUser)
+        {
+            decimal? rating;
+
+            if (matchUser.PlayerRating != null && matchUser.RatingCount != null)
+            {
+                rating = (matchUser.PlayerRating / matchUser.RatingCount);
+            }
+            else
+            {
+                rating = 3;
+            }
+
+            return rating;
+        }
+
         public int CompareBoardGameLists(AspNetUsers activeUser, AspNetUsers matchUser)
         {
             int matchNumber = 0;
@@ -73,29 +89,111 @@ namespace GamerMatch.Controllers
             return matchNumber;
         }
 
-        public int CompareBoardGameMatchTotal(AspNetUsers match, AspNetUsers currentUser)
+        public async Task<int> CompareSteamRecent(AspNetUsers activeUser, AspNetUsers matchUser)
+        {
+            int matchNumber = 0;
+            List<string> recentListActive = new List<string>();
+            List<string> recentListMatch = new List<string>();
+
+            if(activeUser.SteamInfo != null && matchUser.SteamInfo != null)
+            {
+                recentListActive = await apiController.MyGames(activeUser.SteamInfo);
+                recentListMatch = await apiController.MyGames(matchUser.SteamInfo);
+            }
+            else
+            {
+                return matchNumber;
+            }
+
+            for (int i = 0; i < recentListActive.Count; i++)
+            {
+                for (int j = 0; j < recentListMatch.Count; j++)
+                {
+                    if (recentListActive[i] == recentListMatch[j])
+                    {
+                        matchNumber += 1;
+                    }
+                }
+            }
+            return matchNumber;
+
+        }
+
+        public async Task<int> CompareMatchTotal(AspNetUsers match, AspNetUsers currentUser)
         {
             int matchScore = 0;
+            int boardGameMatches = CompareBoardGameLists(currentUser, match);
+            decimal? rating = GetUserRating(currentUser, match);
+            //int steamGameMatches = await CompareSteamRecent(currentUser, match);
 
-            //Algorithm that weighs input parameters to generate match score
+            //Compare Preferred Playstyle
             if (CompareBoardGameUserPref(currentUser, match))
             {
-                matchScore += 100;
+                matchScore += 25;
             }
+
+            //Take Into Account User Ratings
+            if (rating > 4)
+            {
+                matchScore += 25;
+            }
+            else if (rating > 3 && rating <= 4)
+            {
+                matchScore += 20;
+            }
+            else if (rating > 2 && rating <= 3)
+            {
+                matchScore += 15;
+            }
+            else if (rating > 1 && rating <= 2)
+            {
+                matchScore += 10;
+            }
+
+            //Compare # Boardgame Matches
+            if (boardGameMatches > 5)
+            {
+                matchScore += 30;
+            }
+            else if (boardGameMatches > 2 && boardGameMatches <= 5)
+            {
+                matchScore += 20;
+            }
+            else if (boardGameMatches > 0 && boardGameMatches <= 2)
+            {
+                matchScore += 10;
+            }
+
+            //Compare # Steam Recently Played Matches
+            //if (steamGameMatches > 3)
+            //{
+            //    matchScore += 20;
+            //}
+            //else if (steamGameMatches == 3)
+            //{
+            //    matchScore += 15;
+            //}
+            //else if (steamGameMatches == 2)
+            //{
+            //    matchScore += 10;
+            //}
+            //else if (steamGameMatches == 1)
+            //{
+            //    matchScore += 5;
+            //}
 
             return matchScore;
         }
 
-        public List<int> MatchTotalsList(List<AspNetUsers> matchList, AspNetUsers currentUser)
+        public async Task<List<int>> MatchTotalsList(List<AspNetUsers> matchList, AspNetUsers currentUser)
         {
             List<int> matchScoreList = new List<int>();
-            //if (TempData["SearchType"].ToString() == "Boardgame")
-            //{
+
             foreach (AspNetUsers user in matchList)
             {
-                matchScoreList.Add(CompareBoardGameMatchTotal(user, currentUser));
+                matchScoreList.Add(await CompareMatchTotal(user, currentUser));
             }
-            //}
+
             return matchScoreList;
         }
 

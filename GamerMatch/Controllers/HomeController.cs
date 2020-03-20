@@ -228,7 +228,7 @@ namespace GamerMatch.Controllers
                 }
             }
 
-            ViewData["ScoreList"] = matchController.MatchTotalsList(displayList, currentUser);
+            ViewData["ScoreList"] = await matchController.MatchTotalsList(displayList, currentUser);
 
             ViewData["Search"] = new List<string>
                 {
