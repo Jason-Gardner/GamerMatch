@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g0N0Nah1oU2vimGWgKoNGQuDO0RcDOh0/m/Uo4OmDUlZU+/JPdj0Wqv5qyMJmWpQdGaP3FxwtzvOKmQeYLjeOA==",
+  "dgSpecHash": "A2jN45nYMrRUth5dQHJX/BohFgcOYVZ/jen/qkFoSkJcu7EU/cuKSo9DxbZOk5Iur6igVEmXxe2wTp6hAC637w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+  "projectFilePath": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mbate\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.1\\microsoft.aspnetcore.cryptography.internal.3.1.1.nupkg.sha512",
     "C:\\Users\\mbate\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.1\\microsoft.aspnetcore.cryptography.keyderivation.3.1.1.nupkg.sha512",

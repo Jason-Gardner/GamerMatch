@@ -124,7 +124,16 @@ namespace GamerMatch.Controllers
             int matchScore = 0;
             int boardGameMatches = CompareBoardGameLists(currentUser, match);
             decimal? rating = GetUserRating(currentUser, match);
-            //int steamGameMatches = await CompareSteamRecent(currentUser, match);
+            int steamGameMatches = 0;
+
+            try
+            {
+                steamGameMatches = await CompareSteamRecent(currentUser, match);
+            }
+            catch (KeyNotFoundException)
+            {
+                steamGameMatches = 0;
+            }
 
             //Compare Preferred Playstyle
             if (CompareBoardGameUserPref(currentUser, match))
@@ -165,22 +174,22 @@ namespace GamerMatch.Controllers
             }
 
             //Compare # Steam Recently Played Matches
-            //if (steamGameMatches > 3)
-            //{
-            //    matchScore += 20;
-            //}
-            //else if (steamGameMatches == 3)
-            //{
-            //    matchScore += 15;
-            //}
-            //else if (steamGameMatches == 2)
-            //{
-            //    matchScore += 10;
-            //}
-            //else if (steamGameMatches == 1)
-            //{
-            //    matchScore += 5;
-            //}
+            if (steamGameMatches > 3)
+            {
+                matchScore += 20;
+            }
+            else if (steamGameMatches == 3)
+            {
+                matchScore += 15;
+            }
+            else if (steamGameMatches == 2)
+            {
+                matchScore += 10;
+            }
+            else if (steamGameMatches == 1)
+            {
+                matchScore += 5;
+            }
 
             return matchScore;
         }

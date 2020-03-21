@@ -8837,11 +8837,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+      "projectUniqueName": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
       "projectName": "GamerMatch",
-      "projectPath": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+      "projectPath": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
       "packagesPath": "C:\\Users\\mbate\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\obj\\",
+      "outputPath": "C:\\Users\\mbate\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mbate\\AppData\\Roaming\\NuGet\\NuGet.Config",
