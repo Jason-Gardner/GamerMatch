@@ -2,32 +2,6 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-@*<ul class="navbar-nav mr-auto">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <li class="nav-item">
-            <button type="button" class="mr-auto nav-link btn text-light badge-info">@User.Identity.Name</button>
-        </li>
-        <li class="nav-item">
-            <a class="mr-auto nav-link btn text-light btn-hover-text-info" asp-area="Home" asp-action="Preferences" title="Manage">Manage Profile</a>
-        </li>
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="mr-auto nav-link btn text-light btn-hover-text-info">Logout</button>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
-    }
-</ul>*@
-
 @if (SignInManager.IsSignedIn(User) && (string)ViewData["Title"] != "Home Page")
 {
     <div class="sidenav">
