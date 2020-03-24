@@ -127,22 +127,41 @@ namespace GamerMatch.Controllers
             if (steam == null)
             {
                 gc.SaveChanges();
-                return View("HomePage");
+                return Redirect("HomePage");
             }
             else
             {
                 if (await apiController.ValidateSteamID(steam))
                 {
                     currentUser.SteamInfo = steam;
+                    foreach (var user in gc.AspNetUsers)
+                    {
+                        if (user.UserName == currentUser.UserName)
+                        {
+                            user.SteamInfo = steam;
+                            currentUser.SteamInfo = steam;
+                        }
+                    }
                     gc.SaveChanges();
                     ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
-                    return View("HomePage");
+                    return Redirect("HomePage");
                 }
                 else
                 {
-                    currentUser.SteamInfo = null;
+                    steam = null;
+                    foreach (var user in gc.AspNetUsers)
+                    {
+                        if (user.UserName == currentUser.UserName)
+                        {
+                            user.SteamInfo = steam;
+                            currentUser.SteamInfo = steam;
+                            ViewData["Error"] = "Invalid Steam ID.";
+                        }
+                    }
+                    
+                    FindUser();
                     gc.SaveChanges();
-                    return View("HomePage");
+                    return View("Preferences", currentUser);
                 }
             }
         }
