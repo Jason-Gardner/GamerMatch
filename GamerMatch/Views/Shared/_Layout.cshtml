@@ -13,48 +13,43 @@
 </head>
 <body>
     <header>
-        <nav class="navbar fixed-top ml-0 navbar-expand-xl navbar-toggleable-sm navbar-light badge-primary border-bottom box-shadow mb-3">
+        <nav class="navbar fixed-top ml-0 navbar-expand navbar-light badge-primary border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" style="font-family: fantasy" asp-area="" asp-controller="Home" asp-action="Index">GamerMatch</a>
-                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav mr-auto">
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <button type="button" class="mr-auto nav-link btn text-light badge-info">@User.Identity.Name</button>
-                            </li>
-                            <li class="nav-item">
-                                <a class="mr-auto nav-link btn text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="HomePage">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="mr-auto nav-link btn text-light btn-hover-text-info" asp-area="Home" asp-action="Preferences" title="Manage">Manage Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button type="submit" class="mr-auto nav-link btn text-light btn-hover-text-info badge-danger">Logout</button>
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav mr-auto">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <button type="button" class="mr-auto nav-link btn text-light badge-info">@User.Identity.Name</button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="mr-auto nav-link btn text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="HomePage">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="mr-auto nav-link btn text-light btn-hover-text-info" asp-area="Home" asp-action="Preferences" title="Manage">Manage Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="mr-auto nav-link btn text-light btn-hover-text-info badge-info">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light btn-hover-text-info" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                    }
+                </ul>
             </div>
+
         </nav>
     </header>
     <div class="container" style="padding-top: 100px;">
@@ -64,8 +59,8 @@
     </div>
 
     <footer class="fixed-bottom footer">
-        <div class="container">
-            &copy; 2020 - GamerMatch <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container" style="font-family: fantasy; font-size: 20px;">
+            &copy; 2020 - GamerMatch  &hearts;&hearts;&hearts;  <a class="text-light btn-hover-text-info" asp-area="" asp-controller="Home" asp-action="Privacy">About GamerMatch</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
