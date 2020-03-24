@@ -19,6 +19,38 @@ namespace GamerMatch.Controllers
             _config = config;
         }
 
+        public async Task<bool> ValidateSteamID(string steam)
+        {
+            bool valid = false;
+
+            using (var httpClient = new HttpClient())
+            {
+                var apiKey = _config["ApiKey"];
+
+                using (var response =
+                    await httpClient.GetAsync($" http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={apiKey}&steamids={steam}"))
+                {
+                    var summary = await response.Content.ReadAsStringAsync();
+                    jDoc = JsonDocument.Parse(summary);
+                    var players = jDoc.RootElement.GetProperty("response").GetProperty("players");
+
+                    for (int i = 0; i < players.GetArrayLength(); i++)
+                    {
+                        var player = players[i].GetProperty("steamid").GetString();
+
+                        if (player == steam)
+                        {
+                            valid = true;
+                            return valid;
+                        }
+                    }
+
+                }
+            }
+
+            return valid;
+        }
+
         // Calls API to return a Steam ID if the user owns a game from the search parameter
         public async Task<string> SearchGames(string steamID, string gameSearch)
         {

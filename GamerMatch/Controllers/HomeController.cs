@@ -131,10 +131,19 @@ namespace GamerMatch.Controllers
             }
             else
             {
-                currentUser.SteamInfo = steam;
-                gc.SaveChanges();
-                ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
-                return View("HomePage");
+                if (await apiController.ValidateSteamID(steam))
+                {
+                    currentUser.SteamInfo = steam;
+                    gc.SaveChanges();
+                    ViewData["MyGames"] = await apiController.GetSteamLibrary(currentUser.SteamInfo);
+                    return View("HomePage");
+                }
+                else
+                {
+                    currentUser.SteamInfo = null;
+                    gc.SaveChanges();
+                    return View("HomePage");
+                }
             }
         }
 

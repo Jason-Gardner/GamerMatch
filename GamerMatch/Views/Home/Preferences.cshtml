@@ -15,7 +15,7 @@
                 <label for="steam">Steam ID (Optional)</label>
                 @if (Model.SteamInfo != null)
                 {
-                    <input type="text" placeholder="@Model.SteamInfo" name="steam" />
+                    <input type="text" placeholder="@Model.SteamInfo" name="steam" pattern="(^[0-9]{17}$)" />
                 }
                 else
                 {
