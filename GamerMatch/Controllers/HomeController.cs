@@ -193,7 +193,7 @@ namespace GamerMatch.Controllers
                 }
             }
 
-            ViewData["ScoreList"] = await matchController.MatchTotalsList(displayList, currentUser);
+            List<Result> resultList = await matchController.MatchTotalsList(displayList, currentUser);
 
             ViewData["Search"] = new List<string>
                 {
@@ -208,7 +208,7 @@ namespace GamerMatch.Controllers
             }
             else
             {
-                return View(displayList);
+                return View(resultList);
             }
         }
 

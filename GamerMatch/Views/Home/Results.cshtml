@@ -5,17 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model List<AspNetUsers>
+@model List<Result>
 @{
     List<string> matches = new List<string>();
     GamerMatchContext db = new GamerMatchContext();
     List<MatchTable> matchTableList = db.MatchTable.ToList<MatchTable>();
     string title = null;
-    List<int> scoreList = ViewData["ScoreList"] as List<int>;
 }
 
 <h1>Results for</h1>
-<h2>
+<h2 style="padding-bottom: 25px;">
     @foreach (var search in ViewData["Search"] as List<string>)
     {
         if (search != null && search != "null")
@@ -31,14 +30,14 @@
             <table>
                 @for (int i = 0; i < Model.Count; i++)
                 {
-                    var rating = Model[i].PlayerRating / Model[i].RatingCount;
+                    var rating = Model[i].user.PlayerRating / Model[i].user.RatingCount;
                     <tr>
                         <td>
-                            <h4>Username: @Model[i].UserName</h4>
-                            <h4>Preferred Play Style: @Model[i].UserPref</h4>
-                            <h4>Match Rating: @scoreList[i]</h4>
+                            <h4>Username: @Model[i].user.UserName</h4>
+                            <h4>Preferred Play Style: @Model[i].user.UserPref</h4>
+                            <h4>Match Rating: @Model[i].rating</h4>
 
-                            @if (Model[i].PlayerRating == null)
+                            @if (Model[i].user.PlayerRating == null)
                             {
                                 <h4>
                                     User Rating: No Rating!
@@ -52,10 +51,12 @@
                                 </h4>
                             }
 
-                            <button type="button" class="badge-success rounded" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = Model[i].UserName })'">Match</button>
-                            <button type="button" class="badge-danger rounded" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { user = Model[i].UserName, title = title})'">Dismiss</button>
+                            <button type="button" class="badge-success rounded" value="Accept Match" onclick="location.href='@Url.Action("MatchUsers", "Match", new { matchUser = Model[i].user.UserName })'">Match</button>
+                            <button type="button" class="badge-danger rounded" value="Deny Match" onclick="location.href='@Url.Action("DenyMatch", "Match", new { user = Model[i].user.UserName, title = title})'">Dismiss</button>
+                            <br /><br />
                         </td>
                     </tr>
+                    
                 }
             </table>
         }

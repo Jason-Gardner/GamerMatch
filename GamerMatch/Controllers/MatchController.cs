@@ -178,14 +178,17 @@ namespace GamerMatch.Controllers
             return matchScore;
         }
 
-        public async Task<List<int>> MatchTotalsList(List<AspNetUsers> matchList, AspNetUsers currentUser)
+        public async Task<List<Result>> MatchTotalsList(List<AspNetUsers> matchList, AspNetUsers currentUser)
         {
-            List<int> matchScoreList = new List<int>();
+            List<Result> matchScoreList = new List<Result>();
 
             foreach (AspNetUsers user in matchList)
             {
-                matchScoreList.Add(await CompareMatchTotal(user, currentUser));
+                int rating = await CompareMatchTotal(user, currentUser);
+                matchScoreList.Add( new Result(user, rating));
             }
+
+            matchScoreList.Sort((y,x) => x.rating.CompareTo(y.rating));
 
             return matchScoreList;
         }

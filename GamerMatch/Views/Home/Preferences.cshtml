@@ -18,28 +18,36 @@
     <form id="Preferences" asp-controller="Home" asp-action="UserPerf" onsubmit="return ValidationEvent()">
         <fieldset>
             <div class="form-group">
-                <label for="steam">Steam ID (Optional)</label>
+                <label for="steam" style="font-family: fantasy; font-size: 28px">Have a Steam ID? Enter It Here:</label><br />
                 @if (Model.SteamInfo is null)
                 {
                     <input type="text" name="steam" />
                 }
                 else
                 {
-                    <input type="text" placeholder="@Model.SteamInfo" name="steam" pattern="(^[0-9]{17}$)" />
+                    <input type="text" placeholder="@Model.SteamInfo" name="steam" pattern="(^[0-9]{17}$)" /><br />
                 }
-
+                <br />
+                <p>
+                    Put in the 17-digit Steam ID for your account. <br />
+                    <i>For test purposes, you may use the following ID: 76561197960434622</i>
+                </p>
+                <p>PRO-TIP: Make your Steam profile public to take advantage of this application!</p>
             </div>
+            <p>---------------------------------------------------------</p>
             <div class="form-group">
-                <label for="difficulty">Select Difficulty</label>
+                <label for="difficulty" style="font-family: fantasy; font-size: 28px">Select Difficulty:</label><br />
                 <select name="difficulty">
                     <option value="@Model.UserPref">Current Difficulty is: @Model.UserPref</option>
                     <option value="casual">Casual</option>
                     <option value="competitive">Competitive</option>
                     <option value="win">Play to Win</option>
                 </select>
-            </div>
+            </div><br />
+            <p>If you are a new gamer, select Casual.<br />If you like to play a fair amount of games, select Competitive.<br />If you play a lot of games, select Play to Win</p><br />
+            <p>---------------------------------------------------------</p>
             <div class="form-group">
-                <label for="boardgames" style="font-family: fantasy; font-size: 28px">Select Your Favorite Board/Card Games</label><br />
+                <label for="boardgames" style="font-family: fantasy; font-size: 28px">Select Your Favorite Board/Card Games:</label><br />
                 @foreach (var item in ViewData["Games"] as List<BoardGames>)
                 {
                     @if (Model.BoardGamePref != null && Model.BoardGamePref.Contains(@item.Title))
