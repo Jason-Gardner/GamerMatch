@@ -14,11 +14,11 @@
         <p><i>@ViewData["Error"]</i></p>
     }
 
-    <p style="font-family: fantasy; font-size: 28px">Please confirm your information:</p>
+    <p style="font-family: Impact; font-size: 28px">Please confirm your information:</p>
     <form id="Preferences" asp-controller="Home" asp-action="UserPerf" onsubmit="return ValidationEvent()">
         <fieldset>
             <div class="form-group">
-                <label for="steam" style="font-family: fantasy; font-size: 28px">Have a Steam ID? Enter It Here:</label><br />
+                <label for="steam" style="font-family: Impact; font-size: 28px">Have a Steam ID? Enter It Here:</label><br />
                 @if (Model.SteamInfo is null)
                 {
                     <input type="text" name="steam" />
@@ -36,7 +36,7 @@
             </div>
             <p>---------------------------------------------------------</p>
             <div class="form-group">
-                <label for="difficulty" style="font-family: fantasy; font-size: 28px">Select Difficulty:</label><br />
+                <label for="difficulty" style="font-family: Impact; font-size: 28px">Select Difficulty:</label><br />
                 <select name="difficulty">
                     <option value="@Model.UserPref">Current Difficulty is: @Model.UserPref</option>
                     <option value="casual">Casual</option>
@@ -47,7 +47,7 @@
             <p>If you are a new gamer, select Casual.<br />If you like to play a fair amount of games, select Competitive.<br />If you play a lot of games, select Play to Win</p><br />
             <p>---------------------------------------------------------</p>
             <div class="form-group">
-                <label for="boardgames" style="font-family: fantasy; font-size: 28px">Select Your Favorite Board/Card Games:</label><br />
+                <label for="boardgames" style="font-family: Impact; font-size: 28px">Select Your Favorite Board/Card Games:</label><br />
                 @foreach (var item in ViewData["Games"] as List<BoardGames>)
                 {
                     @if (Model.BoardGamePref != null && Model.BoardGamePref.Contains(@item.Title))
