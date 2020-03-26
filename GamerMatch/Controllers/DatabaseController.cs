@@ -42,7 +42,6 @@ namespace GamerMatch.Controllers
         {
             GamerMatchContext db = new GamerMatchContext();
             List<AspNetUsers> matchList = new List<AspNetUsers>();
-            //HttpContext.Session.SetString("Searched Game", gameSearch);
             ViewBag.Title = gameSearch;
 
             foreach (AspNetUsers user in db.AspNetUsers)
@@ -69,8 +68,7 @@ namespace GamerMatch.Controllers
         public List<AspNetUsers> SearchMatchBoardGames(string gameTitle)
         {
             GamerMatchContext db = new GamerMatchContext();
-            List<AspNetUsers> matchList = new List<AspNetUsers>();
-            //HttpContext.Session.SetString("Searched Game", gameTitle);
+            List<AspNetUsers> matchList = new List<AspNetUsers>(); 
             ViewBag.Title = gameTitle;
             List<string> gameList = new List<string>();
             string userGames = null;

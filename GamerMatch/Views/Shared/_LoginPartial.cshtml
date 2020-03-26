@@ -27,9 +27,12 @@
                     <label for="ban">Ban List</label>
                     <select name="ban" style="min-width:70%; max-width: 70%">
                         <option value=null></option>
-                        @foreach (var item in ViewData["Bans"] as List<string>)
+                        @if (ViewData["Bans"] != null)
                         {
-                            <option value="@item">@item</option>
+                            @foreach (var item in ViewData["Bans"] as List<string>)
+                            {
+                                <option value="@item">@item</option>
+                            }
                         }
                     </select>
                     <button type="button" class="rounded badge-info" value="Clear Bans" onclick="location.href='@Url.Action("Clear", "Match")'">Clear Bans</button>

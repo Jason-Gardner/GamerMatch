@@ -22,22 +22,6 @@ namespace GamerMatch.Controllers
             apiController = new ApiController(config);
         }
 
-        //Just for testing purposes
-        public AspNetUsers SetTestUser()
-        {
-            AspNetUsers testUser = new AspNetUsers();
-
-            foreach (AspNetUsers user in db.AspNetUsers)
-            {
-                if (user.Id == "1")
-                {
-                    testUser = user;
-                }
-            }
-
-            return testUser;
-        }
-
         public bool CompareBoardGameUserPref(AspNetUsers activeUser, AspNetUsers matchUser)
         {
             bool match;
