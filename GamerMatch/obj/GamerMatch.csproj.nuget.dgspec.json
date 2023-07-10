@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj": {}
+    "C:\\Users\\jason\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj": {
+    "C:\\Users\\jason\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+        "projectUniqueName": "C:\\Users\\jason\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
         "projectName": "GamerMatch",
-        "projectPath": "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
-        "packagesPath": "C:\\Users\\Jason Gardner\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jason Gardner\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch\\obj\\",
+        "projectPath": "C:\\Users\\jason\\source\\repos\\GamerMatch\\GamerMatch\\GamerMatch.csproj",
+        "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jason\\source\\repos\\GamerMatch\\GamerMatch\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Jason Gardner\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jason\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,10 +22,12 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -40,6 +39,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
@@ -76,10 +76,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.32, 3.1.32]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -88,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
